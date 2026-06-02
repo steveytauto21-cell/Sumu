@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sumu Cafe – Hillside Cafe with Stunning Metro Manila Views | Antipolo, Rizal</title>
+  <meta name="description" content="Sumu Hillside Cafe in Antipolo, Rizal — enjoy breathtaking Metro Manila city views, generous sharing portions, Spanish lattes, truffle pasta, and a cozy indoor-outdoor ambience. Visit us today!" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com" defer></script>
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    /* ──────────────────────────────────────────────
+       CUSTOM CSS — Design Tokens & Overrides
+    ────────────────────────────────────────────── */
+    :root {
+      --cream: #FAF6F0;
+      --cream-dark: #F2EBE0;
+      --earth: #C9A87C;
+      --earth-dark: #A07850;
+      --forest: #2D4A32;
+      --forest-mid: #3D6644;
+      --forest-light: #4E8055;
+      --charcoal: #1E2220;
+      --warm-gray: #6B6258;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #FAF6F0;
+      color: #1E2220;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* ── NAV ── */
+    #navbar {
+      background: rgba(29, 34, 30, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(201, 168, 124, 0.18);
+      transition: all 0.35s ease;
+    }
+
+    .nav-link {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(250, 246, 240, 0.82);
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: #C9A87C;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover { color: #C9A87C; }
+    .nav-link:hover::after { width: 100%; }
+
+    /* ── HERO ── */
+    #home {
+      background-image:
+        linear-gradient(to bottom, rgba(20,28,22,0.72) 0%, rgba(29,34,28,0.55) 55%, rgba(20,28,22,0.88) 100%),
+        url('https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?w=1800&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* ── VIBE SECTION ── */
+    .vibe-bg {
+      background: linear-gradient(135deg, #1E2A20 0%, #2D4A32 60%, #1a2d1c 100%);
+    }
+
+    .vibe-img-1 {
+      background-image:
+        linear-gradient(rgba(20,28,22,0.18), rgba(20,28,22,0.22)),
+        url('https://images.unsplash.com/photo-1534040385115-33dcb3acba5b?w=900&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .vibe-img-2 {
+      background-image:
+        linear-gradient(rgba(20,28,22,0.15), rgba(20,28,22,0.2)),
+        url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=900&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials {
+      background-image:
+        linear-gradient(rgba(250,246,240,0.96), rgba(242,235,224,0.98)),
+        url('https://images.unsplash.com/photo-1559305616-3f99cd43e353?w=1800&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .testimonial-card {
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(201,168,124,0.22);
+      transition: all 0.35s ease;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(45,74,50,0.15);
+      border-color: rgba(201,168,124,0.45);
+    }
+
+    /* ── MENU ── */
+    #menu {
+      background-image:
+        linear-gradient(rgba(250,246,240,0.97), rgba(250,246,240,0.97)),
+        url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1800&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .menu-tab {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-bottom: 2px solid transparent;
+    }
+
+    .menu-tab.active {
+      color: #2D4A32;
+      border-bottom-color: #C9A87C;
+    }
+
+    .menu-card {
+      background: #fff;
+      border: 1px solid rgba(201,168,124,0.18);
+      transition: all 0.35s ease;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 45px rgba(45,74,50,0.12);
+      border-color: rgba(201,168,124,0.4);
+    }
+
+    .menu-card-img {
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Menu card images */
+    .img-truffle {
+      background-image: url('https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600&q=80');
+    }
+    .img-short-ribs {
+      background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80');
+    }
+    .img-chicken-waffles {
+      background-image: url('https://images.unsplash.com/photo-1598887142487-3c854d51eabb?w=600&q=80');
+    }
+    .img-chicken-sandwich {
+      background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80');
+    }
+    .img-gyudon {
+      background-image: url('https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=600&q=80');
+    }
+    .img-caesar {
+      background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80');
+    }
+    .img-nachos {
+      background-image: url('https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?w=600&q=80');
+    }
+    .img-enoki {
+      background-image: url('https://images.unsplash.com/photo-1534482421-64566f976cfa?w=600&q=80');
+    }
+    .img-wedges {
+      background-image: url('https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600&q=80');
+    }
+    .img-ube {
+      background-image: url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&q=80');
+    }
+    .img-cupcakes {
+      background-image: url('https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=600&q=80');
+    }
+    .img-spanish-latte {
+      background-image: url('https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600&q=80');
+    }
+    .img-iced-coffee {
+      background-image: url('https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=600&q=80');
+    }
+    .img-matcha {
+      background-image: url('https://images.unsplash.com/photo-1515823064-d6e0c04616a7?w=600&q=80');
+    }
+    .img-choco {
+      background-image: url('https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=600&q=80');
+    }
+
+    /* ── SHARING BADGE ── */
+    .sharing-badge {
+      background: linear-gradient(135deg, #2D4A32, #3D6644);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ── STAR BADGE ── */
+    .star-badge {
+      background: linear-gradient(135deg, #C9A87C, #A07850);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: linear-gradient(160deg, #1E2A20 0%, #2D4A32 45%, #1a2520 100%);
+    }
+
+    .info-card {
+      background: rgba(250,246,240,0.07);
+      border: 1px solid rgba(201,168,124,0.2);
+      transition: all 0.3s ease;
+    }
+
+    .info-card:hover {
+      background: rgba(250,246,240,0.10);
+      border-color: rgba(201,168,124,0.38);
+    }
+
+    /* ── MAP CARD ── */
+    .map-card {
+      background-image:
+        linear-gradient(rgba(30,42,32,0.55), rgba(30,42,32,0.6)),
+        url('https://images.unsplash.com/photo-1524661135-423995f22d0b?w=900&q=80');
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
+      transition: all 0.35s ease;
+    }
+
+    .map-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    }
+
+    /* ── FORM ── */
+    .form-field {
+      background: rgba(250,246,240,0.08);
+      border: 1px solid rgba(201,168,124,0.25);
+      color: #FAF6F0;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.875rem;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    .form-field:focus {
+      background: rgba(250,246,240,0.12);
+      border-color: rgba(201,168,124,0.65);
+      box-shadow: 0 0 0 3px rgba(201,168,124,0.12);
+    }
+
+    .form-field::placeholder {
+      color: rgba(250,246,240,0.35);
+    }
+
+    .form-field option {
+      background: #1E2A20;
+      color: #FAF6F0;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      background: linear-gradient(135deg, #C9A87C, #A07850);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      transition: all 0.35s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(201,168,124,0.45);
+    }
+
+    .btn-outline {
+      border: 1.5px solid rgba(250,246,240,0.65);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      transition: all 0.35s ease;
+    }
+
+    .btn-outline:hover {
+      background: rgba(250,246,240,0.1);
+      border-color: #C9A87C;
+      color: #C9A87C;
+      transform: translateY(-2px);
+    }
+
+    .btn-messenger {
+      background: linear-gradient(135deg, #2D4A32, #3D6644);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      transition: all 0.35s ease;
+    }
+
+    .btn-messenger:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(45,74,50,0.5);
+    }
+
+    /* ── HOURS TABLE ── */
+    .hours-row {
+      border-bottom: 1px solid rgba(201,168,124,0.12);
+    }
+
+    /* ── FOOTER ── */
+    #footer {
+      background: #0f1a11;
+      border-top: 1px solid rgba(201,168,124,0.15);
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(201,168,124,0.3);
+      transition: all 0.3s ease;
+    }
+
+    .social-icon:hover {
+      background: rgba(201,168,124,0.15);
+      border-color: rgba(201,168,124,0.6);
+      transform: translateY(-3px);
+    }
+
+    /* ── MOBILE MENU ── */
+    #mobile-menu {
+      background: rgba(20,28,22,0.97);
+      backdrop-filter: blur(20px);
+    }
+
+    /* ── STARS ── */
+    .star-filled { color: #C9A87C; }
+
+    /* ── SECTION DIVIDERS ── */
+    .divider-vine {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .divider-vine::before,
+    .divider-vine::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(201,168,124,0.4), transparent);
+    }
+
+    /* ── AMENITIES PILLS ── */
+    .amenity-pill {
+      background: rgba(201,168,124,0.12);
+      border: 1px solid rgba(201,168,124,0.25);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    /* Scroll-in animation */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Mobile hamburger */
+    .hamburger-line {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #FAF6F0;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+
+    .ham-open .line-1 { transform: translateY(6px) rotate(45deg); }
+    .ham-open .line-2 { opacity: 0; }
+    .ham-open .line-3 { transform: translateY(-6px) rotate(-45deg); }
+
+    /* Rating stars */
+    .rating-bar {
+      background: linear-gradient(to right, #C9A87C 68%, rgba(201,168,124,0.2) 68%);
+    }
+  </style>
+</head>
+
+<body class="antialiased">
+
+  <!-- ════════════════════════════════════════════
+       STICKY NAVIGATION
+  ════════════════════════════════════════════ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 lg:px-12">
+      <div class="flex items-center justify-between h-16 md:h-18">
+
+        <!-- Logo -->
+        <a href="#home" class="flex items-center gap-3 group">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg,#C9A87C,#A07850);">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-4 h-4">
+              <path d="M7.5 3.375c0-1.036.84-1.875 1.875-1.875h.375a3.75 3.75 0 013.75 3.75v1.875C13.5 8.161 14.34 9 15.375 9h1.875A3.75 3.75 0 0121 12.75v3.375C21 17.16 20.16 18 19.125 18h-9.75A1.875 1.875 0 017.5 16.125V3.375z"/>
+              <path d="M15 5.25a5.23 5.23 0 011.279-3.434 9.768 9.768 0 016.963 6.963A5.23 5.23 0 0119.75 10H18a3 3 0 01-3-3V5.25z"/>
+            </svg>
+          </div>
+          <div>
+            <span class="font-['Playfair_Display'] font-700 text-base tracking-wide" style="color:#FAF6F0;">Sumu</span>
+            <span class="font-['Playfair_Display'] font-400 italic text-base tracking-wide ml-1" style="color:#C9A87C;">Cafe</span>
+          </div>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#home" class="nav-link">Home</a>
+          <a href="#menu" class="nav-link">Menu</a>
+          <a href="#contact" class="nav-link">Contact</a>
+          <a href="#contact"
+             class="btn-primary text-white text-xs px-5 py-2.5 rounded-full min-h-[40px] flex items-center">
+            Book a Table
+          </a>
+        </div>
+
+        <!-- Mobile Hamburger -->
+        <button id="ham-btn" class="md:hidden flex flex-col gap-1.5 p-2 min-h-[44px] min-w-[44px] items-center justify-center" aria-label="Open navigation menu">
+          <span class="hamburger-line line-1"></span>
+          <span class="hamburger-line line-2"></span>
+          <span class="hamburger-line line-3"></span>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 border-t border-white/10 py-4 px-6 flex flex-col gap-3">
+      <a href="#home" class="nav-link py-3 text-base" onclick="closeMobileMenu()">Home</a>
+      <a href="#menu" class="nav-link py-3 text-base" onclick="closeMobileMenu()">Menu</a>
+      <a href="#contact" class="nav-link py-3 text-base" onclick="closeMobileMenu()">Contact</a>
+      <a href="#contact" class="btn-primary text-white text-sm px-5 py-3 rounded-full text-center mt-2" onclick="closeMobileMenu()">
+        Book a Table
+      </a>
+    </div>
+  </nav>
+
+
+  <!-- ════════════════════════════════════════════
+       SECTION 1: HOME
+  ════════════════════════════════════════════ -->
+  <main>
+  <section id="home">
+
+    <!-- ── HERO ── -->
+    <div class="min-h-screen flex flex-col justify-center relative pt-16">
+
+      <!-- Rating badge -->
+      <div class="absolute top-24 right-6 md:right-12 lg:right-20 flex items-center gap-2 bg-black/30 backdrop-blur-md border border-white/15 rounded-full px-4 py-2">
+        <div class="flex gap-0.5">
+          <i class="fas fa-star star-filled text-xs"></i>
+          <i class="fas fa-star star-filled text-xs"></i>
+          <i class="fas fa-star star-filled text-xs"></i>
+          <i class="fas fa-star star-filled text-xs"></i>
+          <i class="fas fa-star-half-alt star-filled text-xs"></i>
+        </div>
+        <span class="text-white text-xs font-['Poppins'] font-500">4.2 · 299 reviews</span>
+      </div>
+
+      <!-- Hero content -->
+      <div class="max-w-7xl mx-auto px-5 md:px-8 lg:px-12 py-28 md:py-36">
+        <div class="max-w-3xl">
+
+          <!-- Eyebrow -->
+          <div class="flex items-center gap-3 mb-6">
+            <span class="w-8 h-px" style="background:#C9A87C;"></span>
+            <span class="font-['Poppins'] text-xs font-600 tracking-widest uppercase" style="color:#C9A87C;">Antipolo, Rizal · Hillside Escape</span>
+          </div>
+
+          <!-- H1 -->
+          <h1 class="text-5xl md:text-6xl lg:text-7xl font-['Playfair_Display'] font-800 leading-[1.08] mb-5" style="color:#FAF6F0;">
+            Where Metro Manila<br/>
+            <em class="font-['Playfair_Display'] font-600" style="color:#C9A87C;">Looks Beautiful</em>
+          </h1>
+
+          <!-- Sub-headline -->
+          <p class="text-base md:text-lg font-300 leading-relaxed mb-3 max-w-lg" style="color:rgba(250,246,240,0.78); font-family:'Inter',sans-serif;">
+            A breezy hillside cafe with stunning city views, rich Spanish lattes, and generous servings made for sharing. Your next favorite spot in Antipolo.
+          </p>
+
+          <!-- Tag line pills -->
+          <div class="flex flex-wrap gap-2 mb-10">
+            <span class="amenity-pill text-xs px-3 py-1 rounded-full" style="color:#C9A87C;">🌿 City Skyline Views</span>
+            <span class="amenity-pill text-xs px-3 py-1 rounded-full" style="color:#C9A87C;">🍽️ Big Sharing Portions</span>
+            <span class="amenity-pill text-xs px-3 py-1 rounded-full" style="color:#C9A87C;">☕ Superb Spanish Latte</span>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#menu" class="btn-primary text-white text-sm px-8 py-4 rounded-full text-center min-h-[52px] flex items-center justify-center gap-2 shadow-lg">
+              <i class="fas fa-utensils text-xs"></i>
+              View Menu
+            </a>
+            <a href="#contact" class="btn-outline text-white text-sm px-8 py-4 rounded-full text-center min-h-[52px] flex items-center justify-center gap-2">
+              <i class="fas fa-calendar-check text-xs"></i>
+              Book a Table
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+        <span class="font-['Poppins'] text-xs tracking-widest uppercase" style="color:rgba(201,168,124,0.6);">Scroll</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#C9A87C" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- ── VIBE / ABOUT SECTION ── -->
+    <div class="vibe-bg py-24 md:py-32">
+      <div class="max-w-7xl mx-auto px-5 md:px-8 lg:px-12">
+
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-20 items-center">
+
+          <!-- Left: Images bento -->
+          <div class="grid grid-cols-2 gap-3 max-w-lg mx-auto lg:mx-0">
+            <div class="vibe-img-1 aspect-[3/4] rounded-2xl overflow-hidden" style="border:1px solid rgba(201,168,124,0.2);"></div>
+            <div class="flex flex-col gap-3">
+              <div class="vibe-img-2 aspect-square rounded-2xl overflow-hidden" style="border:1px solid rgba(201,168,124,0.2);"></div>
+              <div class="rounded-2xl p-4 flex flex-col justify-between" style="background:rgba(201,168,124,0.1); border:1px solid rgba(201,168,124,0.2); min-height:120px;">
+                <p class="font-['Playfair_Display'] italic text-2xl font-600 leading-tight" style="color:#C9A87C;">"The view hits different."</p>
+                <span class="font-['Poppins'] text-xs mt-2" style="color:rgba(250,246,240,0.45);">— Every guest, ever.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Copy -->
+          <div class="fade-in-up">
+            <div class="flex items-center gap-3 mb-6">
+              <span class="w-8 h-px" style="background:#C9A87C;"></span>
+              <span class="font-['Poppins'] text-xs font-600 tracking-widest uppercase" style="color:#C9A87C;">The Sumu Experience</span>
+            </div>
+
+            <h2 class="text-3xl md:text-4xl font-['Playfair_Display'] font-700 leading-snug mb-6" style="color:#FAF6F0;">
+              More Than Just a Cafe.<br/>
+              <em style="color:#C9A87C;">It's a Hillside Moment.</em>
+            </h2>
+
+            <p class="text-sm md:text-base font-300 leading-relaxed mb-5" style="color:rgba(250,246,240,0.72); font-family:'Inter',sans-serif;">
+              Nestled along Sumulong Highway in Antipolo, Sumu Cafe is your hillside escape from the city's noise. Whether you're settling into a cozy <strong style="color:#C9A87C; font-weight:600;">indoor booth</strong> or breathing in the breeze on our <strong style="color:#C9A87C; font-weight:600;">step-free outdoor terrace</strong>, every seat comes with one of the best views of Metro Manila's skyline.
+            </p>
+
+            <p class="text-sm md:text-base font-300 leading-relaxed mb-8" style="color:rgba(250,246,240,0.72); font-family:'Inter',sans-serif;">
+              Every dish at Sumu is crafted for sharing — generous portions designed for two, paired with flavors that make you stay longer than you planned. Perfect for dates, family afternoons, or a slow Sunday coffee.
+            </p>
+
+            <!-- Amenity pills -->
+            <div class="flex flex-wrap gap-2 mb-8">
+              <span class="amenity-pill text-xs px-3 py-2 rounded-full" style="color:rgba(250,246,240,0.75);">♿ Wheelchair-Accessible Patio</span>
+              <span class="amenity-pill text-xs px-3 py-2 rounded-full" style="color:rgba(250,246,240,0.75);">👶 Kid-Friendly</span>
+              <span class="amenity-pill text-xs px-3 py-2 rounded-full" style="color:rgba(250,246,240,0.75);">📸 Manager Takes Your Photos</span>
+              <span class="amenity-pill text-xs px-3 py-2 rounded-full" style="color:rgba(250,246,240,0.75);">🅿️ Free Parking</span>
+              <span class="amenity-pill text-xs px-3 py-2 rounded-full" style="color:rgba(250,246,240,0.75);">💰 ₱1–500 per person</span>
+            </div>
+
+            <!-- Hours quick view -->
+            <div class="rounded-xl p-4" style="background:rgba(250,246,240,0.06); border:1px solid rgba(201,168,124,0.2);">
+              <p class="font-['Poppins'] text-xs font-600 tracking-widest uppercase mb-3" style="color:#C9A87C;">Hours</p>
+              <div class="flex flex-col gap-1.5">
+                <div class="flex justify-between text-sm" style="color:rgba(250,246,240,0.75); font-family:'Poppins',sans-serif;">
+                  <span>Mon – Tue</span>
+                  <span style="color:#C9A87C;">9:00 AM – 10:00 PM</span>
+                </div>
+                <div class="flex justify-between text-sm" style="color:rgba(250,246,240,0.45); font-family:'Poppins',sans-serif;">
+                  <span>Wed – Thu</span>
+                  <span style="color:rgba(201,168,124,0.4);">Closed</span>
+                </div>
+                <div class="flex justify-between text-sm" style="color:rgba(250,246,240,0.75); font-family:'Poppins',sans-serif;">
+                  <span>Fri – Sun</span>
+                  <span style="color:#C9A87C;">7:00 AM – 11:00 PM</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TESTIMONIALS ── -->
+    <div id="testimonials" class="py-24 md:py-32">
+      <div class="max-w-7xl mx-auto px-5 md:px-8 lg:px-12">
+
+        <!-- Header -->
+        <div class="text-center mb-14 fade-in-up">
+          <div class="divider-vine mb-5 max-w-xs mx-auto">
+            <span class="font-['Poppins'] text-xs font-600 tracking-widest uppercase" style="color:#A07850;">What Guests Say</span>
+          </div>
+          <h2 class="text-3xl md:text-4xl font-['Playfair_Display'] font-700 leading-snug" style="color:#1E2220;">
+            Real Stories from<br/>
+            <em style="color:#2D4A32;">Real Guests</em>
+          </h2>
+          <p class="text-sm font-['Poppins'] mt-3" style="color:#6B6258;">4.2 stars · 299 verified Google reviews</p>
+        </div>
+
+        <!-- Reviews grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+          <!-- Card 1 -->
+          <div class="testimonial-card rounded-2xl p-7 fade-in-up">
+            <div class="flex gap-0.5 mb-5">
+              <i class="fas fa-star star-filled text-sm"></i>
+              <i class="fas fa-star star-filled text-sm"></i>
+              <i class="fas fa-star star-filled text-sm"></i>
+              <i class="fas fa-star star-filled text-sm"></i>
+              <i class="fas fa-star star-filled text-sm"></i>
+            </div>
+            <p class="font-['Playfair_Display'] italic text-lg font-400 leading-relaxed mb-6" style="color:#1E2220;">
+              "Big food servings which can be shared by 2 people. The Spanish latte — both hot and cold — is <em>superb.</em>"
+            </p>
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full flex items-center justify-center text-sm font-700 text-white" style="background:linear-gradient(135deg,#2D4A32,#3D6644); font-family:'Playfair Display',serif;">G</div>
+              <div>
+                <p class="font-['Poppins'] font-600 text-sm" style="color:#1E2220;">Gin V.</p>
+                <p class="font-['Poppins'] text-xs" style="color:#6B6258;">Google Review · ★★★★★</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 — Featured -->
+          <div class="testimonial-card rounded-2xl p-7 fade-in-up relative overflow-hidden" style="border-color:rgba(201,168,124,0.35);">
+            <div class="absolute top-0 right-0 w-24 h-24 rounded-bl-full" style="background:linear-gradient(135deg,rgba(201,168,124,0.15),rgba(201,168,124,0.05));"></div>
+            <div class="flex gap-0.5 mb-5">
+              <i class="fas fa-star star-filled text-sm"></i>
+              <i class="fas fa-star star-filled text-sm"></i>
+              <i class="fas fa-star star-filled text-sm"></i>
+              <i class="fas fa-star star-filled text-sm"></i>
+              <i class="fas fa-star star-filled text-sm"></i>
+            </div>
+            <p class="font-['Playfair_Display'] italic text-lg font-400 leading-relaxed mb-6" style="color:#1E2220;">
+              "Love the ambiance! Food is delicious and in big servings. The manager is so hospitable — <em>he even takes your photos.</em>"
+            </p>
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full flex items-center justify-center text-sm font-700 text-white" style="background:linear-gradient(135deg,#C9A87C,#A07850); font-family:'Playfair Display',serif;">K</div>
+              <div>
+                <p class="font-['Poppins'] font-600 text-sm" style="color:#1E2220;">Kristianne S.</p>
+                <p class="font-['Poppins'] text-xs" style="color:#6B6258;">Google Review · ★★★★★</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="testimonial-card rounded-2xl p-7 fade-in-up">
+            <div class="flex gap-0.5 mb-5">
+              <i class="fas fa-star star-filled text-sm"></i>
+              <i class="fas fa-star star-filled text-sm"></i>
+              <i class="fas fa-star star-filled text-sm"></i>
+              <i class="fas fa-star star-filled text-sm"></i>
+              <i class="fas fa-star star-filled text-sm"></i>
+            </div>
+            <p class="font-['Playfair_Display'] italic text-lg font-400 leading-relaxed mb-6" style="color:#1E2220;">
+              "Truffle pasta was the <em>star</em> for me. Loved the pretty view and the light, chill ambience — exactly what I needed."
+            </p>
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full flex items-center justify-center text-sm font-700 text-white" style="background:linear-gradient(135deg,#2D4A32,#3D6644); font-family:'Playfair Display',serif;">A</div>
+              <div>
+                <p class="font-['Poppins'] font-600 text-sm" style="color:#1E2220;">Aira Jade A.</p>
+                <p class="font-['Poppins'] text-xs" style="color:#6B6258;">Google Review · ★★★★★</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Bottom CTA -->
+        <div class="text-center mt-12">
+          <a href="#menu" class="btn-primary text-white text-sm px-8 py-4 rounded-full inline-flex items-center gap-2 shadow-lg">
+            <i class="fas fa-utensils text-xs"></i>
+            Explore Our Menu
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ════════════════════════════════════════════
+       SECTION 2: MENU
+  ════════════════════════════════════════════ -->
+  <section id="menu" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 lg:px-12">
+
+      <!-- Section Header -->
+      <div class="text-center mb-12 fade-in-up">
+        <div class="divider-vine mb-5 max-w-xs mx-auto">
+          <span class="font-['Poppins'] text-xs font-600 tracking-widest uppercase" style="color:#A07850;">Sumu Signatures</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-['Playfair_Display'] font-700 leading-snug" style="color:#1E2220;">
+          Crafted to Share,<br/>
+          <em style="color:#2D4A32;">Built to Impress.</em>
+        </h2>
+        <p class="mt-4 text-sm max-w-md mx-auto" style="color:#6B6258; font-family:'Poppins',sans-serif; line-height:1.7;">
+          Every dish at Sumu comes in generous serving sizes — made for 2, priced for everyone. ₱1–500 per person.
+        </p>
+      </div>
+
+      <!-- Tab Navigation -->
+      <div class="flex flex-wrap justify-center gap-1 mb-10 border-b pb-0" style="border-color:rgba(201,168,124,0.2);">
+        <button class="menu-tab active px-5 py-3 text-sm" data-tab="all" onclick="filterMenu('all', this)" style="color:#2D4A32;">All</button>
+        <button class="menu-tab px-5 py-3 text-sm" data-tab="star" onclick="filterMenu('star', this)" style="color:#6B6258;">⭐ Star Dish</button>
+        <button class="menu-tab px-5 py-3 text-sm" data-tab="mains" onclick="filterMenu('mains', this)" style="color:#6B6258;">Mains</button>
+        <button class="menu-tab px-5 py-3 text-sm" data-tab="sides" onclick="filterMenu('sides', this)" style="color:#6B6258;">Appetizers & Sides</button>
+        <button class="menu-tab px-5 py-3 text-sm" data-tab="dessert" onclick="filterMenu('dessert', this)" style="color:#6B6258;">Desserts</button>
+        <button class="menu-tab px-5 py-3 text-sm" data-tab="drinks" onclick="filterMenu('drinks', this)" style="color:#6B6258;">Beverages</button>
+      </div>
+
+      <!-- Menu Grid -->
+      <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+
+        <!-- ─ STAR PASTA ─ -->
+        <div class="menu-card rounded-2xl overflow-hidden" data-category="star">
+          <div class="menu-card-img img-truffle h-48"></div>
+          <div class="p-5">
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <h3 class="font-['Playfair_Display'] font-600 text-base leading-snug" style="color:#1E2220;">Truffle Pasta</h3>
+              <span class="star-badge text-white px-2.5 py-1 rounded-full whitespace-nowrap shrink-0">★ Star Dish</span>
+            </div>
+            <p class="text-xs leading-relaxed mb-3" style="color:#6B6258; font-family:'Poppins',sans-serif;">Rich, balanced truffle flavor — served with a perfectly toasted side pastry. The crowd favorite.</p>
+            <span class="sharing-badge text-white text-xs px-3 py-1 rounded-full">🍴 Good for 2</span>
+          </div>
+        </div>
+
+        <!-- ─ MAINS ─ -->
+        <div class="menu-card rounded-2xl overflow-hidden" data-category="mains">
+          <div class="menu-card-img img-short-ribs h-48"></div>
+          <div class="p-5">
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <h3 class="font-['Playfair_Display'] font-600 text-base leading-snug" style="color:#1E2220;">Savory Short Ribs</h3>
+            </div>
+            <p class="text-xs leading-relaxed mb-3" style="color:#6B6258; font-family:'Poppins',sans-serif;">Slow-braised, fall-off-the-bone tenderness. A satisfying indulgence with every bite.</p>
+            <span class="sharing-badge text-white text-xs px-3 py-1 rounded-full">🍴 Good for 2</span>
+          </div>
+        </div>
+
+        <div class="menu-card rounded-2xl overflow-hidden" data-category="mains">
+          <div class="menu-card-img img-chicken-waffles h-48"></div>
+          <div class="p-5">
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <h3 class="font-['Playfair_Display'] font-600 text-base leading-snug" style="color:#1E2220;">Chicken & Waffles</h3>
+            </div>
+            <p class="text-xs leading-relaxed mb-3" style="color:#6B6258; font-family:'Poppins',sans-serif;">Crispy fried chicken meets fluffy golden waffles. Sweet, savory, and deeply satisfying.</p>
+            <span class="sharing-badge text-white text-xs px-3 py-1 rounded-full">🍴 Good for 2</span>
+          </div>
+        </div>
+
+        <div class="menu-card rounded-2xl overflow-hidden" data-category="mains">
+          <div class="menu-card-img img-chicken-sandwich h-48"></div>
+          <div class="p-5">
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <h3 class="font-['Playfair_Display'] font-600 text-base leading-snug" style="color:#1E2220;">Chicken Sandwich</h3>
+            </div>
+            <p class="text-xs leading-relaxed mb-3" style="color:#6B6258; font-family:'Poppins',sans-serif;">A generous, stacked sandwich built for real hunger. Perfectly seasoned and filling.</p>
+            <span class="sharing-badge text-white text-xs px-3 py-1 rounded-full">🍴 Shareable</span>
+          </div>
+        </div>
+
+        <div class="menu-card rounded-2xl overflow-hidden" data-category="mains">
+          <div class="menu-card-img img-gyudon h-48"></div>
+          <div class="p-5">
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <h3 class="font-['Playfair_Display'] font-600 text-base leading-snug" style="color:#1E2220;">Beef Gyudon</h3>
+            </div>
+            <p class="text-xs leading-relaxed mb-3" style="color:#6B6258; font-family:'Poppins',sans-serif;">Melt-in-your-mouth tender beef over steamed rice. Comfort food elevated to hillside standard.</p>
+            <span class="sharing-badge text-white text-xs px-3 py-1 rounded-full">🍴 Good for 2</span>
+          </div>
+        </div>
+
+        <!-- ─ APPETIZERS & SIDES ─ -->
+        <div class="menu-card rounded-2xl overflow-hidden" data-category="sides">
+          <div class="menu-card-img img-caesar h-48"></div>
+          <div class="p-5">
+            <h3 class="font-['Playfair_Display'] font-600 text-base leading-snug mb-2" style="color:#1E2220;">Caesar Salad</h3>
+            <p class="text-xs leading-relaxed mb-3" style="color:#6B6258; font-family:'Poppins',sans-serif;">Crisp romaine, house-made caesar dressing, shaved parmesan. Clean and refreshing.</p>
+            <span class="sharing-badge text-white text-xs px-3 py-1 rounded-full">🍴 Shareable</span>
+          </div>
+        </div>
+
+        <div class="menu-card rounded-2xl overflow-hidden" data-category="sides">
+          <div class="menu-card-img img-nachos h-48"></div>
+          <div class="p-5">
+            <h3 class="font-['Playfair_Display'] font-600 text-base leading-snug mb-2" style="color:#1E2220;">Nachos</h3>
+            <p class="text-xs leading-relaxed mb-3" style="color:#6B6258; font-family:'Poppins',sans-serif;">Loaded with cheese, salsa, and toppings. The perfect view-side snack for the table.</p>
+            <span class="sharing-badge text-white text-xs px-3 py-1 rounded-full">🍴 Good for 2</span>
+          </div>
+        </div>
+
+        <div class="menu-card rounded-2xl overflow-hidden" data-category="sides">
+          <div class="menu-card-img img-enoki h-48"></div>
+          <div class="p-5">
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <h3 class="font-['Playfair_Display'] font-600 text-base leading-snug" style="color:#1E2220;">Fried Enoki Mushrooms</h3>
+              <span class="star-badge text-white px-2.5 py-1 rounded-full whitespace-nowrap shrink-0 text-xs">Huge!</span>
+            </div>
+            <p class="text-xs leading-relaxed mb-3" style="color:#6B6258; font-family:'Poppins',sans-serif;">Guests rave about the massive serving size. Crispy, golden, dangerously addictive.</p>
+            <span class="sharing-badge text-white text-xs px-3 py-1 rounded-full">🍴 Good for 2</span>
+          </div>
+        </div>
+
+        <div class="menu-card rounded-2xl overflow-hidden" data-category="sides">
+          <div class="menu-card-img img-wedges h-48"></div>
+          <div class="p-5">
+            <h3 class="font-['Playfair_Display'] font-600 text-base leading-snug mb-2" style="color:#1E2220;">Potato Wedges</h3>
+            <p class="text-xs leading-relaxed mb-3" style="color:#6B6258; font-family:'Poppins',sans-serif;">Thick-cut, seasoned, and crispy outside — fluffy inside. A reliable crowd-pleaser.</p>
+            <span class="sharing-badge text-white text-xs px-3 py-1 rounded-full">🍴 Shareable</span>
+          </div>
+        </div>
+
+        <!-- ─ DESSERTS ─ -->
+        <div class="menu-card rounded-2xl overflow-hidden" data-category="dessert">
+          <div class="menu-card-img img-ube h-48"></div>
+          <div class="p-5">
+            <h3 class="font-['Playfair_Display'] font-600 text-base leading-snug mb-2" style="color:#1E2220;">Ube Cake</h3>
+            <p class="text-xs leading-relaxed mb-3" style="color:#6B6258; font-family:'Poppins',sans-serif;">Vibrant purple, lightly sweet, and proudly Filipino. A beautiful slice of home.</p>
+            <span class="sharing-badge text-white text-xs px-3 py-1 rounded-full">🍴 Shareable</span>
+          </div>
+        </div>
+
+        <div class="menu-card rounded-2xl overflow-hidden" data-category="dessert">
+          <div class="menu-card-img img-cupcakes h-48"></div>
+          <div class="p-5">
+            <h3 class="font-['Playfair_Display'] font-600 text-base leading-snug mb-2" style="color:#1E2220;">Specialty Cupcakes</h3>
+            <p class="text-xs leading-relaxed mb-3" style="color:#6B6258; font-family:'Poppins',sans-serif;">Rotating seasonal flavors, beautifully decorated. Worth every peso and every photo.</p>
+            <span class="sharing-badge text-white text-xs px-3 py-1 rounded-full">🎂 Indulge</span>
+          </div>
+        </div>
+
+        <!-- ─ BEVERAGES ─ -->
+        <div class="menu-card rounded-2xl overflow-hidden" data-category="drinks">
+          <div class="menu-card-img img-spanish-latte h-48"></div>
+          <div class="p-5">
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <h3 class="font-['Playfair_Display'] font-600 text-base leading-snug" style="color:#1E2220;">Spanish Latte</h3>
+              <span class="star-badge text-white px-2.5 py-1 rounded-full whitespace-nowrap shrink-0">★ Top Pick</span>
+            </div>
+            <p class="text-xs leading-relaxed mb-3" style="color:#6B6258; font-family:'Poppins',sans-serif;">Available hot or iced — guests consistently rate this as Sumu's best drink. Superb is the word.</p>
+            <span class="amenity-pill text-xs px-3 py-1 rounded-full" style="color:#A07850;">Hot & Cold Available</span>
+          </div>
+        </div>
+
+        <div class="menu-card rounded-2xl overflow-hidden" data-category="drinks">
+          <div class="menu-card-img img-iced-coffee h-48"></div>
+          <div class="p-5">
+            <h3 class="font-['Playfair_Display'] font-600 text-base leading-snug mb-2" style="color:#1E2220;">Iced Coffee</h3>
+            <p class="text-xs leading-relaxed mb-3" style="color:#6B6258; font-family:'Poppins',sans-serif;">Cold, bold, and smooth — the perfect hillside afternoon companion.</p>
+            <span class="amenity-pill text-xs px-3 py-1 rounded-full" style="color:#A07850;">House Blend</span>
+          </div>
+        </div>
+
+        <div class="menu-card rounded-2xl overflow-hidden" data-category="drinks">
+          <div class="menu-card-img img-matcha h-48"></div>
+          <div class="p-5">
+            <h3 class="font-['Playfair_Display'] font-600 text-base leading-snug mb-2" style="color:#1E2220;">Matcha</h3>
+            <p class="text-xs leading-relaxed mb-3" style="color:#6B6258; font-family:'Poppins',sans-serif;">Earthy, calming, and beautifully vibrant. A mindful drink for a mindful view.</p>
+            <span class="amenity-pill text-xs px-3 py-1 rounded-full" style="color:#A07850;">Premium Grade</span>
+          </div>
+        </div>
+
+        <div class="menu-card rounded-2xl overflow-hidden" data-category="drinks">
+          <div class="menu-card-img img-choco h-48"></div>
+          <div class="p-5">
+            <h3 class="font-['Playfair_Display'] font-600 text-base leading-snug mb-2" style="color:#1E2220;">Chocolate Drink</h3>
+            <p class="text-xs leading-relaxed mb-3" style="color:#6B6258; font-family:'Poppins',sans-serif;">Warm, comforting, and rich. Kids love it. Adults secretly order it twice.</p>
+            <span class="amenity-pill text-xs px-3 py-1 rounded-full" style="color:#A07850;">Hot & Iced</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Menu Note -->
+      <div class="text-center mt-10">
+        <p class="text-xs font-['Poppins'] italic" style="color:#6B6258;">Menu may vary based on availability. For the full current menu, message us on Facebook.</p>
+        <a href="https://facebook.com/sumucafeph" target="_blank" rel="noopener noreferrer"
+           class="btn-primary text-white text-sm px-7 py-3 rounded-full inline-flex items-center gap-2 mt-5 shadow-md">
+          <i class="fab fa-facebook-messenger text-sm"></i>
+          Ask About Today's Menu
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════
+       SECTION 3: CONTACT
+  ════════════════════════════════════════════ -->
+  <section id="contact" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 lg:px-12">
+
+      <!-- Section Header -->
+      <div class="text-center mb-16 fade-in-up">
+        <div class="divider-vine mb-5 max-w-xs mx-auto" style="--vine-color:rgba(201,168,124,0.5);">
+          <span class="font-['Poppins'] text-xs font-600 tracking-widest uppercase" style="color:#C9A87C;">Find Us & Book a Table</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-['Playfair_Display'] font-700 leading-snug" style="color:#FAF6F0;">
+          Come Visit Us on<br/>
+          <em style="color:#C9A87C;">Sumulong Highway</em>
+        </h2>
+      </div>
+
+      <!-- Main Grid: Info + Form -->
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-14 items-start">
+
+        <!-- LEFT: Info column -->
+        <div class="flex flex-col gap-5 fade-in-up">
+
+          <!-- Contact Info Card -->
+          <div class="info-card rounded-2xl p-6">
+            <p class="font-['Poppins'] text-xs font-600 tracking-widest uppercase mb-5" style="color:#C9A87C;">Get in Touch</p>
+            <div class="flex flex-col gap-4">
+              <a href="tel:+639060293304" class="flex items-center gap-4 group">
+                <div class="w-9 h-9 rounded-full flex items-center justify-center shrink-0" style="background:rgba(201,168,124,0.15); border:1px solid rgba(201,168,124,0.25);">
+                  <i class="fas fa-phone text-xs" style="color:#C9A87C;"></i>
+                </div>
+                <div>
+                  <p class="text-xs font-['Poppins']" style="color:rgba(250,246,240,0.45);">Phone</p>
+                  <p class="text-sm font-['Poppins'] font-500 group-hover:text-[#C9A87C] transition-colors" style="color:#FAF6F0;">0906 029 3304</p>
+                </div>
+              </a>
+              <a href="mailto:sumucafeph@gmail.com" class="flex items-center gap-4 group">
+                <div class="w-9 h-9 rounded-full flex items-center justify-center shrink-0" style="background:rgba(201,168,124,0.15); border:1px solid rgba(201,168,124,0.25);">
+                  <i class="fas fa-envelope text-xs" style="color:#C9A87C;"></i>
+                </div>
+                <div>
+                  <p class="text-xs font-['Poppins']" style="color:rgba(250,246,240,0.45);">Email</p>
+                  <p class="text-sm font-['Poppins'] font-500 group-hover:text-[#C9A87C] transition-colors" style="color:#FAF6F0;">sumucafeph@gmail.com</p>
+                </div>
+              </a>
+              <a href="https://instagram.com/sumucafe" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 group">
+                <div class="w-9 h-9 rounded-full flex items-center justify-center shrink-0" style="background:rgba(201,168,124,0.15); border:1px solid rgba(201,168,124,0.25);">
+                  <i class="fab fa-instagram text-xs" style="color:#C9A87C;"></i>
+                </div>
+                <div>
+                  <p class="text-xs font-['Poppins']" style="color:rgba(250,246,240,0.45);">Instagram</p>
+                  <p class="text-sm font-['Poppins'] font-500 group-hover:text-[#C9A87C] transition-colors" style="color:#FAF6F0;">@sumucafe</p>
+                </div>
+              </a>
+              <a href="https://facebook.com/sumucafeph" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 group">
+                <div class="w-9 h-9 rounded-full flex items-center justify-center shrink-0" style="background:rgba(201,168,124,0.15); border:1px solid rgba(201,168,124,0.25);">
+                  <i class="fab fa-facebook text-xs" style="color:#C9A87C;"></i>
+                </div>
+                <div>
+                  <p class="text-xs font-['Poppins']" style="color:rgba(250,246,240,0.45);">Facebook</p>
+                  <p class="text-sm font-['Poppins'] font-500 group-hover:text-[#C9A87C] transition-colors" style="color:#FAF6F0;">@sumucafeph</p>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Hours Card -->
+          <div class="info-card rounded-2xl p-6">
+            <p class="font-['Poppins'] text-xs font-600 tracking-widest uppercase mb-5" style="color:#C9A87C;">Operating Hours</p>
+            <div class="flex flex-col gap-2.5">
+              <div class="hours-row flex justify-between pb-2.5 text-sm font-['Poppins']" style="color:#FAF6F0;">
+                <span style="color:rgba(250,246,240,0.7);">Monday</span>
+                <span>9:00 AM – 10:00 PM</span>
+              </div>
+              <div class="hours-row flex justify-between pb-2.5 text-sm font-['Poppins']" style="color:#FAF6F0;">
+                <span style="color:rgba(250,246,240,0.7);">Tuesday</span>
+                <span>9:00 AM – 10:00 PM</span>
+              </div>
+              <div class="hours-row flex justify-between pb-2.5 text-sm font-['Poppins']" style="color:rgba(250,246,240,0.35);">
+                <span>Wednesday</span>
+                <span>Closed</span>
+              </div>
+              <div class="hours-row flex justify-between pb-2.5 text-sm font-['Poppins']" style="color:rgba(250,246,240,0.35);">
+                <span>Thursday</span>
+                <span>Closed</span>
+              </div>
+              <div class="hours-row flex justify-between pb-2.5 text-sm font-['Poppins']" style="color:#FAF6F0;">
+                <span style="color:rgba(250,246,240,0.7);">Friday</span>
+                <span>7:00 AM – 11:00 PM</span>
+              </div>
+              <div class="hours-row flex justify-between pb-2.5 text-sm font-['Poppins']" style="color:#FAF6F0;">
+                <span style="color:rgba(250,246,240,0.7);">Saturday</span>
+                <span>7:00 AM – 11:00 PM</span>
+              </div>
+              <div class="flex justify-between text-sm font-['Poppins']" style="color:#FAF6F0;">
+                <span style="color:rgba(250,246,240,0.7);">Sunday</span>
+                <span>7:00 AM – 11:00 PM</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Map Card -->
+          <a href="https://www.google.com/maps/search/?api=1&query=Sumu+Cafe+Antipolo"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="map-card rounded-2xl p-7 min-h-[180px] flex flex-col justify-between block"
+             aria-label="Open Sumu Cafe location in Google Maps">
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <i class="fas fa-map-marker-alt text-sm" style="color:#C9A87C;"></i>
+                <span class="font-['Poppins'] text-xs font-600 tracking-widest uppercase" style="color:#C9A87C;">Our Location</span>
+              </div>
+              <p class="font-['Playfair_Display'] font-600 text-lg leading-snug" style="color:#FAF6F0;">3D Sumulong Hwy,<br/>Mambugan, Antipolo, 1870 Rizal</p>
+            </div>
+            <div class="flex items-center gap-2 mt-4">
+              <span class="btn-primary text-white text-xs px-4 py-2 rounded-full inline-flex items-center gap-2">
+                <i class="fas fa-location-arrow text-xs"></i>
+                Open in Google Maps
+              </span>
+            </div>
+          </a>
+
+        </div>
+
+        <!-- RIGHT: Reservation Form -->
+        <div class="fade-in-up">
+          <div class="rounded-2xl p-7 md:p-9" style="background:rgba(250,246,240,0.06); border:1px solid rgba(201,168,124,0.2);">
+
+            <div class="mb-7">
+              <p class="font-['Poppins'] text-xs font-600 tracking-widest uppercase mb-1" style="color:#C9A87C;">Table Reservation</p>
+              <h3 class="font-['Playfair_Display'] font-700 text-2xl" style="color:#FAF6F0;">Reserve Your Spot</h3>
+              <p class="text-xs mt-2 font-['Poppins'] leading-relaxed" style="color:rgba(250,246,240,0.5);">Fill out the form and we'll send your reservation inquiry directly to Sumu Cafe via Facebook Messenger. Quick and easy.</p>
+            </div>
+
+            <form id="reservationForm" novalidate class="flex flex-col gap-4">
+
+              <!-- Full Name -->
+              <div>
+                <label class="block text-xs font-['Poppins'] font-500 mb-1.5" style="color:rgba(250,246,240,0.65);">Full Name <span style="color:#C9A87C;">*</span></label>
+                <input type="text" id="resName" required placeholder="Your full name"
+                  class="form-field w-full px-4 py-3 rounded-xl min-h-[44px]" />
+              </div>
+
+              <!-- Date + Time Row -->
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-['Poppins'] font-500 mb-1.5" style="color:rgba(250,246,240,0.65);">Date <span style="color:#C9A87C;">*</span></label>
+                  <input type="date" id="resDate" required
+                    class="form-field w-full px-4 py-3 rounded-xl min-h-[44px]" />
+                </div>
+                <div>
+                  <label class="block text-xs font-['Poppins'] font-500 mb-1.5" style="color:rgba(250,246,240,0.65);">Time <span style="color:#C9A87C;">*</span></label>
+                  <input type="time" id="resTime" required
+                    class="form-field w-full px-4 py-3 rounded-xl min-h-[44px]" />
+                </div>
+              </div>
+
+              <!-- Guests + Seating Row -->
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-['Poppins'] font-500 mb-1.5" style="color:rgba(250,246,240,0.65);">No. of Guests <span style="color:#C9A87C;">*</span></label>
+                  <input type="number" id="resGuests" required min="1" max="50" placeholder="e.g. 2"
+                    class="form-field w-full px-4 py-3 rounded-xl min-h-[44px]" />
+                </div>
+                <div>
+                  <label class="block text-xs font-['Poppins'] font-500 mb-1.5" style="color:rgba(250,246,240,0.65);">Seating Preference <span style="color:#C9A87C;">*</span></label>
+                  <select id="resSeating" required class="form-field w-full px-4 py-3 rounded-xl min-h-[44px]">
+                    <option value="" disabled selected>Choose...</option>
+                    <option value="Indoor Booth">Indoor Booth</option>
+                    <option value="Outdoor Patio / Terrace">Outdoor Patio / Terrace</option>
+                    <option value="No Preference">No Preference</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Special Requests -->
+              <div>
+                <label class="block text-xs font-['Poppins'] font-500 mb-1.5" style="color:rgba(250,246,240,0.65);">Special Requests / Notes</label>
+                <textarea id="resNotes" rows="3" placeholder="Any dietary restrictions, celebrations, wheelchair access, etc."
+                  class="form-field w-full px-4 py-3 rounded-xl resize-none"></textarea>
+              </div>
+
+              <!-- Error message -->
+              <p id="form-error" class="text-xs font-['Poppins'] hidden" style="color:#F87171;">Please fill in all required fields.</p>
+
+              <!-- Submit -->
+              <button type="submit"
+                class="btn-messenger text-white text-sm px-6 py-4 rounded-xl min-h-[52px] flex items-center justify-center gap-2 mt-1 w-full shadow-lg">
+                <i class="fab fa-facebook-messenger text-sm"></i>
+                Send via Facebook Messenger
+              </button>
+
+              <p class="text-xs text-center font-['Poppins']" style="color:rgba(250,246,240,0.35);">
+                You'll be redirected to Messenger with your reservation pre-filled.
+              </p>
+
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+
+  <!-- ════════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════ -->
+  <footer id="footer" class="py-12">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 lg:px-12">
+
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+
+        <!-- Logo + tagline -->
+        <div class="text-center md:text-left">
+          <div class="flex items-center justify-center md:justify-start gap-2 mb-2">
+            <span class="font-['Playfair_Display'] font-700 text-xl" style="color:#FAF6F0;">Sumu</span>
+            <span class="font-['Playfair_Display'] italic text-xl" style="color:#C9A87C;">Cafe</span>
+          </div>
+          <p class="text-xs font-['Poppins']" style="color:rgba(250,246,240,0.35);">Hillside Cafe · Antipolo, Rizal</p>
+        </div>
+
+        <!-- Social links -->
+        <div class="flex items-center gap-3">
+          <a href="https://instagram.com/sumucafe" target="_blank" rel="noopener noreferrer"
+             class="social-icon rounded-full flex items-center justify-center"
+             aria-label="Follow Sumu Cafe on Instagram">
+            <i class="fab fa-instagram text-sm" style="color:#C9A87C;"></i>
+          </a>
+          <a href="https://facebook.com/sumucafeph" target="_blank" rel="noopener noreferrer"
+             class="social-icon rounded-full flex items-center justify-center"
+             aria-label="Follow Sumu Cafe on Facebook">
+            <i class="fab fa-facebook text-sm" style="color:#C9A87C;"></i>
+          </a>
+          <a href="https://m.me/sumucafeph" target="_blank" rel="noopener noreferrer"
+             class="social-icon rounded-full flex items-center justify-center"
+             aria-label="Message Sumu Cafe on Messenger">
+            <i class="fab fa-facebook-messenger text-sm" style="color:#C9A87C;"></i>
+          </a>
+          <a href="tel:+639060293304"
+             class="social-icon rounded-full flex items-center justify-center"
+             aria-label="Call Sumu Cafe">
+            <i class="fas fa-phone text-sm" style="color:#C9A87C;"></i>
+          </a>
+        </div>
+
+        <!-- Copyright -->
+        <p class="text-xs font-['Poppins'] text-center md:text-right" style="color:rgba(250,246,240,0.3);">
+          © 2025 Sumu Hillside Cafe.<br/>All rights reserved.
+        </p>
+
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ════════════════════════════════════════════
+       JAVASCRIPT
+  ════════════════════════════════════════════ -->
+  <script defer>
+
+    // ── MOBILE MENU TOGGLE ──────────────────────
+    const hamBtn = document.getElementById('ham-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamBtn.addEventListener('click', () => {
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      if (isOpen) {
+        mobileMenu.classList.add('hidden');
+        hamBtn.classList.remove('ham-open');
+      } else {
+        mobileMenu.classList.remove('hidden');
+        hamBtn.classList.add('ham-open');
+      }
+    });
+
+    function closeMobileMenu() {
+      mobileMenu.classList.add('hidden');
+      hamBtn.classList.remove('ham-open');
+    }
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (!hamBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+        closeMobileMenu();
+      }
+    });
+
+
+    // ── MENU CATEGORY FILTER ─────────────────────
+    function filterMenu(category, btn) {
+      // Update tab styles
+      document.querySelectorAll('.menu-tab').forEach(t => {
+        t.classList.remove('active');
+        t.style.color = '#6B6258';
+      });
+      btn.classList.add('active');
+      btn.style.color = '#2D4A32';
+
+      // Filter cards
+      const cards = document.querySelectorAll('#menu-grid [data-category]');
+      cards.forEach(card => {
+        const match = category === 'all' || card.dataset.category === category;
+        card.style.display = match ? 'block' : 'none';
+        if (match) {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(12px)';
+          requestAnimationFrame(() => {
+            card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          });
+        }
+      });
+    }
+
+
+    // ── RESERVATION FORM → MESSENGER ────────────
+    const form = document.getElementById('reservationForm');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name    = document.getElementById('resName').value.trim();
+      const date    = document.getElementById('resDate').value;
+      const time    = document.getElementById('resTime').value;
+      const guests  = document.getElementById('resGuests').value;
+      const seating = document.getElementById('resSeating').value;
+      const notes   = document.getElementById('resNotes').value.trim() || 'None';
+      const errEl   = document.getElementById('form-error');
+
+      if (!name || !date || !time || !guests || !seating) {
+        errEl.classList.remove('hidden');
+        return;
+      }
+
+      errEl.classList.add('hidden');
+
+      // Format time to 12h
+      const [h, m] = time.split(':');
+      const hour = parseInt(h);
+      const ampm = hour >= 12 ? 'PM' : 'AM';
+      const hour12 = hour % 12 || 12;
+      const formattedTime = `${hour12}:${m} ${ampm}`;
+
+      // Format date
+      const dateObj = new Date(date + 'T00:00:00');
+      const formattedDate = dateObj.toLocaleDateString('en-PH', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+      });
+
+      const message =
+`Hi Sumu Cafe! 👋 I would like to inquire about a table reservation:
+
+📋 Name: ${name}
+📅 Date: ${formattedDate}
+🕐 Time: ${formattedTime}
+👥 Guests: ${guests} pax
+🪑 Seating: ${seating}
+📝 Special Requests: ${notes}
+
+Looking forward to visiting! Thank you! 😊`;
+
+      const encodedMsg = encodeURIComponent(message);
+      const messengerUrl = `https://m.me/sumucafeph?text=${encodedMsg}`;
+
+      window.open(messengerUrl, '_blank');
+    });
+
+
+    // ── SCROLL ANIMATIONS ────────────────────────
+    const fadeEls = document.querySelectorAll('.fade-in-up');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    fadeEls.forEach(el => observer.observe(el));
+
+
+    // ── ACTIVE NAV HIGHLIGHTING ──────────────────
+    const sections = document.querySelectorAll('section[id], div[id="testimonials"]');
+    const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach(link => {
+            link.style.color = '';
+            if (link.getAttribute('href') === `#${id}`) {
+              link.style.color = '#C9A87C';
+            }
+          });
+        }
+      });
+    }, { threshold: 0.35 });
+
+    document.querySelectorAll('section[id]').forEach(s => sectionObserver.observe(s));
+
+
+    // ── SET MIN DATE ON RESERVATION FORM ─────────
+    const dateInput = document.getElementById('resDate');
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    dateInput.min = `${yyyy}-${mm}-${dd}`;
+
+  </script>
+
+</body>
+</html>
