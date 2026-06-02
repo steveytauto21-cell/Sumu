@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu — Sumu Hillside Cafe · Antipolo, Rizal</title>
+  <meta name="description" content="Explore the Sumu Cafe menu — Truffle Pasta, Spanish Latte, Savory Short Ribs, Chicken and Waffles, Ube Cake, and more. Generous portions perfect for sharing, ₱1–500 per person." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=Cinzel:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream:    '#F5EFE4',
+            sand:     '#E8D9C0',
+            espresso: '#2C1A0E',
+            bark:     '#5C3D2E',
+            moss:     '#3B5249',
+            sage:     '#7A9E7E',
+            gold:     '#C8963E',
+            char:     '#1E1E1E',
+          },
+          fontFamily: {
+            display: ['Cormorant Garamond', 'serif'],
+            heading: ['Cinzel', 'serif'],
+            body:    ['DM Sans', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { overflow-x: hidden; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: #F5EFE4;
+      color: #2C1A0E;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    #main-nav {
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+    #main-nav.scrolled {
+      background: rgba(44,26,14,0.97) !important;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.35);
+    }
+    .nav-link {
+      position: relative;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #F5EFE4;
+      transition: color 0.3s;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: #C8963E;
+      transition: width 0.35s ease;
+    }
+    .nav-link:hover { color: #C8963E; }
+    .nav-link:hover::after { width: 100%; }
+    .nav-link.active { color: #C8963E; }
+    .nav-link.active::after { width: 100%; }
+
+    /* ── HERO ── */
+    #menu-hero {
+      background-image:
+        linear-gradient(to bottom, rgba(28,16,6,0.80) 0%, rgba(28,16,6,0.65) 60%, rgba(245,239,228,0.08) 100%),
+        url('https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=1800&q=80');
+      background-size: cover;
+      background-position: center 55%;
+      background-attachment: fixed;
+    }
+
+    /* ── CATEGORY TABS ── */
+    .tab-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.55rem 1.4rem;
+      border-radius: 99px;
+      border: 1.5px solid transparent;
+      cursor: pointer;
+      transition: all 0.28s ease;
+      color: #5C3D2E;
+      background: transparent;
+      border-color: rgba(92,61,46,0.25);
+      white-space: nowrap;
+    }
+    .tab-btn:hover {
+      border-color: #C8963E;
+      color: #C8963E;
+    }
+    .tab-btn.active {
+      background: #2C1A0E;
+      color: #F5EFE4;
+      border-color: #2C1A0E;
+    }
+
+    /* ── MENU CARD ── */
+    .menu-card {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(92,61,46,0.08);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .menu-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 60px rgba(44,26,14,0.14);
+    }
+    .menu-card-img {
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      position: relative;
+    }
+    .menu-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.5s ease;
+    }
+    .menu-card:hover .menu-card-img img {
+      transform: scale(1.08);
+    }
+    .menu-card-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 0.3rem 0.8rem;
+      border-radius: 99px;
+    }
+    .badge-star {
+      background: #C8963E;
+      color: #fff;
+    }
+    .badge-share {
+      background: rgba(59,82,73,0.9);
+      color: #F5EFE4;
+    }
+    .badge-new {
+      background: rgba(44,26,14,0.85);
+      color: #F5EFE4;
+    }
+
+    /* ── ANIMATE ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up-d1 { transition-delay: 0.1s; }
+    .fade-up-d2 { transition-delay: 0.2s; }
+    .fade-up-d3 { transition-delay: 0.3s; }
+
+    /* ── CATEGORY SECTION ── */
+    .category-section { display: none; }
+    .category-section.active { display: block; }
+
+    /* ── SHARING TAG ── */
+    .sharing-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(59,82,73,0.08);
+      border: 1px solid rgba(59,82,73,0.2);
+      color: #3B5249;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      padding: 0.25rem 0.7rem;
+      border-radius: 99px;
+      font-weight: 500;
+    }
+
+    /* ── CTA BUTTONS ── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #C8963E;
+      color: #F5EFE4;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.85rem 2.1rem;
+      border-radius: 4px;
+      transition: background 0.3s, transform 0.25s, box-shadow 0.3s;
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      background: #a97a2c;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(200,150,62,0.38);
+    }
+
+    /* ── GOLD DIVIDER ── */
+    .gold-divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(to right, transparent, #C8963E, transparent);
+      margin: 0 auto;
+    }
+
+    /* ── MOBILE NAV ── */
+    #mobile-menu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s;
+    }
+    #mobile-menu.open { max-height: 400px; }
+
+    /* ── HAMBURGER ── */
+    .ham span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #F5EFE4;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .ham.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .ham.active span:nth-child(2) { opacity: 0; }
+    .ham.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── STAR ── */
+    .star-filled { color: #C8963E; }
+
+    /* ── SPEC BAND ── */
+    #spec-band {
+      background-image:
+        linear-gradient(rgba(44,26,14,0.90), rgba(44,26,14,0.90)),
+        url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1800&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* ── TABS SCROLL ── */
+    .tabs-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .tabs-scroll::-webkit-scrollbar { display: none; }
+
+    /* ── MENU CARD GRID FILTER ── */
+    .menu-item { transition: opacity 0.3s, transform 0.3s; }
+    .menu-item.hidden-item { display: none; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     STICKY NAVIGATION
+══════════════════════════════════════ -->
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-espresso/90 backdrop-blur-md shadow-lg">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="flex items-center justify-between h-20">
+      <a href="index.html" class="flex flex-col leading-none">
+        <span class="font-heading text-cream text-lg tracking-widest">SUMU</span>
+        <span class="font-body text-gold text-[0.58rem] tracking-[0.28em] uppercase -mt-0.5">Hillside Cafe</span>
+      </a>
+      <div class="hidden md:flex items-center gap-10">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="menu.html" class="nav-link active">Menu</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="contact.html#reservation" class="btn-primary text-[0.72rem] py-2.5 px-5">Book a Table</a>
+      </div>
+      <button id="ham-btn" class="ham md:hidden flex flex-col gap-[5px] p-2 focus:outline-none" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="md:hidden bg-espresso/97 backdrop-blur-md">
+    <div class="px-6 pt-2 pb-6 flex flex-col gap-5">
+      <a href="index.html" class="nav-link text-cream py-1">Home</a>
+      <a href="menu.html" class="nav-link text-cream py-1">Menu</a>
+      <a href="contact.html" class="nav-link text-cream py-1">Contact</a>
+      <a href="contact.html#reservation" class="btn-primary w-fit mt-2">Book a Table</a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════
+     MENU HERO
+══════════════════════════════════════ -->
+<section id="menu-hero" class="pt-48 pb-32 flex flex-col items-center justify-center text-center px-6">
+  <div class="max-w-3xl mx-auto">
+    <span class="inline-block border border-gold/50 text-gold font-body text-[0.68rem] tracking-[0.22em] uppercase px-4 py-1.5 rounded-full mb-7 fade-up">
+      Our Signature Dishes
+    </span>
+    <h1 class="font-display text-cream text-5xl sm:text-6xl lg:text-7xl font-light leading-tight mb-6 fade-up fade-up-d1">
+      A Menu Crafted <br/><em class="italic">for the Shared Table</em>
+    </h1>
+    <p class="font-body text-sand/70 text-base max-w-lg mx-auto mb-8 fade-up fade-up-d2 leading-relaxed">
+      Every dish at Sumu is made generous — portions big enough for two, flavors bold enough to remember. Value for money. No compromise.
+    </p>
+    <div class="inline-flex items-center gap-2 bg-cream/10 border border-cream/15 rounded-full px-5 py-2 fade-up fade-up-d3">
+      <span class="text-gold text-sm">✦</span>
+      <span class="text-sand/80 font-body text-xs tracking-wide">All mains are sharing-size &nbsp;·&nbsp; ₱1–500 per person</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     MENU CONTENT
+══════════════════════════════════════ -->
+<section id="menu" class="bg-cream pb-32">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+    <!-- Category Tabs -->
+    <div class="tabs-scroll mb-14 fade-up">
+      <div class="flex gap-3 w-max mx-auto pb-1">
+        <button class="tab-btn active" data-tab="all">All Items</button>
+        <button class="tab-btn" data-tab="star">⭐ Star Dishes</button>
+        <button class="tab-btn" data-tab="mains">Mains</button>
+        <button class="tab-btn" data-tab="appetizers">Starters &amp; Sides</button>
+        <button class="tab-btn" data-tab="desserts">Desserts</button>
+        <button class="tab-btn" data-tab="drinks">Beverages</button>
+      </div>
+    </div>
+
+    <!-- ── ALL ITEMS GRID ── -->
+    <div id="menu-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-7">
+
+      <!-- TRUFFLE PASTA — STAR -->
+      <article class="menu-card fade-up" data-category="star mains">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600&q=80" alt="Truffle Pasta — Sumu Cafe signature dish" loading="lazy" />
+          <span class="menu-card-badge badge-star">★ House Star</span>
+        </div>
+        <div class="p-5 flex-1 flex flex-col">
+          <h3 class="font-display text-espresso text-2xl font-medium leading-tight mb-1">Truffle Pasta</h3>
+          <span class="sharing-tag mb-3">👥 Sharing Size</span>
+          <p class="font-body text-bark/70 text-sm leading-relaxed flex-1">Perfectly balanced rich truffle cream, served with toasted side pastry. The dish guests can't stop talking about.</p>
+          <div class="mt-4 pt-4 border-t border-sand/30 flex items-center gap-2">
+            <span class="star-filled text-xs">★★★★★</span>
+            <span class="text-bark/40 text-xs font-body">Most ordered</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- SAVORY SHORT RIBS -->
+      <article class="menu-card fade-up fade-up-d1" data-category="mains">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80" alt="Savory Short Ribs at Sumu Cafe" loading="lazy" />
+          <span class="menu-card-badge badge-share">👥 For Two</span>
+        </div>
+        <div class="p-5 flex-1 flex flex-col">
+          <h3 class="font-display text-espresso text-2xl font-medium leading-tight mb-1">Savory Short Ribs</h3>
+          <span class="sharing-tag mb-3">👥 Sharing Size</span>
+          <p class="font-body text-bark/70 text-sm leading-relaxed flex-1">Fall-off-the-bone tender short ribs, slow-braised in a deep savory sauce. Worth every bite.</p>
+          <div class="mt-4 pt-4 border-t border-sand/30 flex items-center gap-2">
+            <span class="star-filled text-xs">★★★★★</span>
+            <span class="text-bark/40 text-xs font-body">Guest favorite</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- CHICKEN AND WAFFLES -->
+      <article class="menu-card fade-up fade-up-d2" data-category="mains">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1562802378-063ec186a863?w=600&q=80" alt="Chicken and Waffles at Sumu Cafe" loading="lazy" />
+          <span class="menu-card-badge badge-share">👥 For Two</span>
+        </div>
+        <div class="p-5 flex-1 flex flex-col">
+          <h3 class="font-display text-espresso text-2xl font-medium leading-tight mb-1">Chicken &amp; Waffles</h3>
+          <span class="sharing-tag mb-3">👥 Sharing Size</span>
+          <p class="font-body text-bark/70 text-sm leading-relaxed flex-1">Crispy fried chicken on fluffy golden waffles — the sweet and savory combo that always hits.</p>
+          <div class="mt-4 pt-4 border-t border-sand/30 flex items-center gap-2">
+            <span class="star-filled text-xs">★★★★☆</span>
+            <span class="text-bark/40 text-xs font-body">Brunch staple</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- CHICKEN SANDWICH -->
+      <article class="menu-card fade-up fade-up-d3" data-category="mains">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80" alt="Chicken Sandwich at Sumu Cafe" loading="lazy" />
+        </div>
+        <div class="p-5 flex-1 flex flex-col">
+          <h3 class="font-display text-espresso text-2xl font-medium leading-tight mb-1">Chicken Sandwich</h3>
+          <span class="sharing-tag mb-3">👥 Sharing Size</span>
+          <p class="font-body text-bark/70 text-sm leading-relaxed flex-1">A generously loaded sandwich with juicy chicken, fresh greens, and a house sauce that keeps guests coming back.</p>
+          <div class="mt-4 pt-4 border-t border-sand/30 flex items-center gap-2">
+            <span class="star-filled text-xs">★★★★☆</span>
+            <span class="text-bark/40 text-xs font-body">Crowd pleaser</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- BEEF GYUDON -->
+      <article class="menu-card fade-up" data-category="mains">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=600&q=80" alt="Beef Gyudon at Sumu Cafe" loading="lazy" />
+          <span class="menu-card-badge badge-share">👥 For Two</span>
+        </div>
+        <div class="p-5 flex-1 flex flex-col">
+          <h3 class="font-display text-espresso text-2xl font-medium leading-tight mb-1">Beef Gyudon</h3>
+          <span class="sharing-tag mb-3">👥 Sharing Size</span>
+          <p class="font-body text-bark/70 text-sm leading-relaxed flex-1">Tender sliced beef simmered in a sweet-savory dashi broth over fluffy steamed rice. Comforting every time.</p>
+          <div class="mt-4 pt-4 border-t border-sand/30 flex items-center gap-2">
+            <span class="star-filled text-xs">★★★★★</span>
+            <span class="text-bark/40 text-xs font-body">Comfort bowl</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- CAESAR SALAD -->
+      <article class="menu-card fade-up fade-up-d1" data-category="appetizers">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1550304943-4f24f54ddde9?w=600&q=80" alt="Caesar Salad at Sumu Cafe" loading="lazy" />
+        </div>
+        <div class="p-5 flex-1 flex flex-col">
+          <h3 class="font-display text-espresso text-2xl font-medium leading-tight mb-1">Caesar Salad</h3>
+          <span class="sharing-tag mb-3">👥 Sharing Size</span>
+          <p class="font-body text-bark/70 text-sm leading-relaxed flex-1">Crisp romaine, shaved parmesan, crunchy croutons, and a house Caesar dressing made to impress.</p>
+          <div class="mt-4 pt-4 border-t border-sand/30 flex items-center gap-2">
+            <span class="star-filled text-xs">★★★★☆</span>
+            <span class="text-bark/40 text-xs font-body">Fresh daily</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- NACHOS -->
+      <article class="menu-card fade-up fade-up-d2" data-category="appetizers">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?w=600&q=80" alt="Nachos at Sumu Cafe" loading="lazy" />
+          <span class="menu-card-badge badge-share">👥 For Two</span>
+        </div>
+        <div class="p-5 flex-1 flex flex-col">
+          <h3 class="font-display text-espresso text-2xl font-medium leading-tight mb-1">Nachos</h3>
+          <span class="sharing-tag mb-3">👥 Sharing Size</span>
+          <p class="font-body text-bark/70 text-sm leading-relaxed flex-1">Crispy tortilla chips loaded with melted cheese, jalapeños, sour cream, and pico de gallo. Great for groups.</p>
+          <div class="mt-4 pt-4 border-t border-sand/30 flex items-center gap-2">
+            <span class="star-filled text-xs">★★★★☆</span>
+            <span class="text-bark/40 text-xs font-body">Table snack</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- FRIED ENOKI MUSHROOMS -->
+      <article class="menu-card fade-up fade-up-d3" data-category="appetizers">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=600&q=80" alt="Fried Enoki Mushrooms at Sumu Cafe" loading="lazy" />
+          <span class="menu-card-badge badge-new">HUGE serving</span>
+        </div>
+        <div class="p-5 flex-1 flex flex-col">
+          <h3 class="font-display text-espresso text-2xl font-medium leading-tight mb-1">Fried Enoki Mushrooms</h3>
+          <span class="sharing-tag mb-3">👥 Sharing Size</span>
+          <p class="font-body text-bark/70 text-sm leading-relaxed flex-1">Golden-battered enoki mushrooms in a massive serving — crispy, light, and undeniably addictive.</p>
+          <div class="mt-4 pt-4 border-t border-sand/30 flex items-center gap-2">
+            <span class="star-filled text-xs">★★★★★</span>
+            <span class="text-bark/40 text-xs font-body">Surprise favorite</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- POTATO WEDGES -->
+      <article class="menu-card fade-up" data-category="appetizers">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=600&q=80" alt="Potato Wedges at Sumu Cafe" loading="lazy" />
+          <span class="menu-card-badge badge-share">👥 For Two</span>
+        </div>
+        <div class="p-5 flex-1 flex flex-col">
+          <h3 class="font-display text-espresso text-2xl font-medium leading-tight mb-1">Potato Wedges</h3>
+          <span class="sharing-tag mb-3">👥 Sharing Size</span>
+          <p class="font-body text-bark/70 text-sm leading-relaxed flex-1">Thick-cut golden wedges seasoned with herbs and served with a house dipping sauce. The perfect side.</p>
+          <div class="mt-4 pt-4 border-t border-sand/30 flex items-center gap-2">
+            <span class="star-filled text-xs">★★★★☆</span>
+            <span class="text-bark/40 text-xs font-body">Classic side</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- UBE CAKE -->
+      <article class="menu-card fade-up fade-up-d1" data-category="desserts">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&q=80" alt="Ube Cake at Sumu Cafe" loading="lazy" />
+          <span class="menu-card-badge badge-star">✦ Signature</span>
+        </div>
+        <div class="p-5 flex-1 flex flex-col">
+          <h3 class="font-display text-espresso text-2xl font-medium leading-tight mb-1">Ube Cake</h3>
+          <span class="sharing-tag mb-3">🍰 Slice to Share</span>
+          <p class="font-body text-bark/70 text-sm leading-relaxed flex-1">Vibrant purple ube layered cake with a creamy frosting — a Filipino classic done beautifully.</p>
+          <div class="mt-4 pt-4 border-t border-sand/30 flex items-center gap-2">
+            <span class="star-filled text-xs">★★★★★</span>
+            <span class="text-bark/40 text-xs font-body">Sweet ending</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- SPECIALTY CUPCAKES -->
+      <article class="menu-card fade-up fade-up-d2" data-category="desserts">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=600&q=80" alt="Specialty Cupcakes at Sumu Cafe" loading="lazy" />
+        </div>
+        <div class="p-5 flex-1 flex flex-col">
+          <h3 class="font-display text-espresso text-2xl font-medium leading-tight mb-1">Specialty Cupcakes</h3>
+          <span class="sharing-tag mb-3">🎂 Box of Treats</span>
+          <p class="font-body text-bark/70 text-sm leading-relaxed flex-1">Rotating seasonal flavors, beautifully frosted. A sweet treat to cap your hillside experience.</p>
+          <div class="mt-4 pt-4 border-t border-sand/30 flex items-center gap-2">
+            <span class="star-filled text-xs">★★★★☆</span>
+            <span class="text-bark/40 text-xs font-body">Seasonal menu</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- SPANISH LATTE -->
+      <article class="menu-card fade-up fade-up-d3" data-category="drinks">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600&q=80" alt="Spanish Latte at Sumu Cafe" loading="lazy" />
+          <span class="menu-card-badge badge-star">★ Highly Rated</span>
+        </div>
+        <div class="p-5 flex-1 flex flex-col">
+          <h3 class="font-display text-espresso text-2xl font-medium leading-tight mb-1">Spanish Latte</h3>
+          <span class="sharing-tag mb-3">☕ Hot or Iced</span>
+          <p class="font-body text-bark/70 text-sm leading-relaxed flex-1">"Superb taste" — both hot and cold versions are highly praised. Rich, smooth, and perfectly sweetened.</p>
+          <div class="mt-4 pt-4 border-t border-sand/30 flex items-center gap-2">
+            <span class="star-filled text-xs">★★★★★</span>
+            <span class="text-bark/40 text-xs font-body">Most praised drink</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ICED COFFEE -->
+      <article class="menu-card fade-up" data-category="drinks">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=600&q=80" alt="Iced Coffee at Sumu Cafe" loading="lazy" />
+        </div>
+        <div class="p-5 flex-1 flex flex-col">
+          <h3 class="font-display text-espresso text-2xl font-medium leading-tight mb-1">Iced Coffee</h3>
+          <span class="sharing-tag mb-3">☕ Cold Brew Style</span>
+          <p class="font-body text-bark/70 text-sm leading-relaxed flex-1">Smooth, refreshing cold coffee perfect for sipping on the breezy outdoor terrace with a view.</p>
+          <div class="mt-4 pt-4 border-t border-sand/30 flex items-center gap-2">
+            <span class="star-filled text-xs">★★★★☆</span>
+            <span class="text-bark/40 text-xs font-body">Afternoon treat</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- MATCHA -->
+      <article class="menu-card fade-up fade-up-d1" data-category="drinks">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=600&q=80" alt="Matcha Drink at Sumu Cafe" loading="lazy" />
+        </div>
+        <div class="p-5 flex-1 flex flex-col">
+          <h3 class="font-display text-espresso text-2xl font-medium leading-tight mb-1">Matcha</h3>
+          <span class="sharing-tag mb-3">🍵 Hot or Iced</span>
+          <p class="font-body text-bark/70 text-sm leading-relaxed flex-1">Premium ceremonial matcha with milk — earthy, smooth, and endlessly photogenic. A hillside essential.</p>
+          <div class="mt-4 pt-4 border-t border-sand/30 flex items-center gap-2">
+            <span class="star-filled text-xs">★★★★☆</span>
+            <span class="text-bark/40 text-xs font-body">Aesthetic must-try</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- CHOCOLATE DRINK -->
+      <article class="menu-card fade-up fade-up-d2" data-category="drinks">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=600&q=80" alt="Chocolate Drink at Sumu Cafe" loading="lazy" />
+        </div>
+        <div class="p-5 flex-1 flex flex-col">
+          <h3 class="font-display text-espresso text-2xl font-medium leading-tight mb-1">Comforting Chocolate</h3>
+          <span class="sharing-tag mb-3">🍫 Warm or Cold</span>
+          <p class="font-body text-bark/70 text-sm leading-relaxed flex-1">Rich, velvety chocolate drink that feels like a warm hug. Perfect for early mornings or rainy evenings.</p>
+          <div class="mt-4 pt-4 border-t border-sand/30 flex items-center gap-2">
+            <span class="star-filled text-xs">★★★★★</span>
+            <span class="text-bark/40 text-xs font-body">Cozy comfort</span>
+          </div>
+        </div>
+      </article>
+
+    </div><!-- end menu-grid -->
+
+    <!-- No results msg -->
+    <div id="no-results" class="hidden text-center py-20 text-bark/40 font-body">
+      No items in this category yet.
+    </div>
+
+  </div><!-- end max-w -->
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SPEC BAND (Sharing Callout)
+══════════════════════════════════════ -->
+<section id="spec-band" class="py-20">
+  <div class="max-w-5xl mx-auto px-6 lg:px-12 text-center">
+    <div class="fade-up">
+      <h2 class="font-display text-cream text-4xl sm:text-5xl font-light mb-6">
+        Every Dish is Made <em class="italic">for Two</em>
+      </h2>
+      <p class="font-body text-sand/70 max-w-xl mx-auto text-base leading-relaxed mb-10">
+        Our portions aren't just generous — they're designed for the shared table. Bring a date, your family, or your best friend. Sumu is better together.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="contact.html#reservation" class="btn-primary">Reserve a Table</a>
+        <a href="contact.html" class="inline-flex items-center gap-2 text-sand/70 font-body text-sm hover:text-gold transition-colors underline underline-offset-4">
+          Get Directions
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer class="bg-espresso py-10">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <div class="font-heading text-cream tracking-widest text-base">SUMU</div>
+        <div class="text-gold text-[0.6rem] tracking-[0.3em] uppercase">Hillside Cafe</div>
+      </div>
+      <div class="flex gap-8 text-xs tracking-widest uppercase">
+        <a href="index.html" class="text-sand/60 hover:text-gold transition-colors">Home</a>
+        <a href="menu.html" class="text-sand/60 hover:text-gold transition-colors">Menu</a>
+        <a href="contact.html" class="text-sand/60 hover:text-gold transition-colors">Contact</a>
+      </div>
+      <div class="flex items-center gap-5">
+        <a href="https://instagram.com/sumucafe" target="_blank" rel="noopener" aria-label="Sumu Cafe on Instagram"
+          class="w-9 h-9 rounded-full border border-sand/20 flex items-center justify-center text-sand/60 hover:text-gold hover:border-gold transition-all duration-300">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zm4.25 3a5.5 5.5 0 110 11 5.5 5.5 0 010-11zm0 1.5a4 4 0 100 8 4 4 0 000-8zm5.63-2.38a1 1 0 110 2 1 1 0 010-2z"/></svg>
+        </a>
+        <a href="https://facebook.com/sumucafeph" target="_blank" rel="noopener" aria-label="Sumu Cafe on Facebook"
+          class="w-9 h-9 rounded-full border border-sand/20 flex items-center justify-center text-sand/60 hover:text-gold hover:border-gold transition-all duration-300">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="border-t border-sand/10 mt-8 pt-6 text-center text-sand/30 text-xs font-body">
+      © 2024 Sumu Hillside Cafe · 3D Sumulong Hwy, Mambugan, Antipolo, 1870 Rizal · All rights reserved
+    </div>
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════ -->
+<script defer>
+  // ── Sticky Nav
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      nav.style.background = 'rgba(44,26,14,0.97)';
+    } else {
+      nav.style.background = 'rgba(44,26,14,0.90)';
+    }
+  });
+
+  // ── Hamburger
+  const hamBtn     = document.getElementById('ham-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamBtn.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamBtn.classList.toggle('active', isOpen);
+  });
+
+  // ── Category Tabs Filter
+  const tabBtns  = document.querySelectorAll('.tab-btn');
+  const menuCards = document.querySelectorAll('.menu-card');
+  const noResults = document.getElementById('no-results');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Update active tab
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const selectedTab = btn.dataset.tab;
+      let visibleCount = 0;
+
+      menuCards.forEach(card => {
+        const categories = (card.dataset.category || '').split(' ');
+        const match = selectedTab === 'all' || categories.includes(selectedTab);
+
+        if (match) {
+          card.classList.remove('hidden-item');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden-item');
+        }
+      });
+
+      noResults.classList.toggle('hidden', visibleCount > 0);
+    });
+  });
+
+  // ── Scroll Reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // ── Immediate hero animate
+  document.querySelectorAll('#menu-hero .fade-up').forEach(el => {
+    setTimeout(() => el.classList.add('visible'), 150);
+  });
+</script>
+</body>
+</html>
