@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact &amp; Reservations — Sumu Hillside Cafe · Antipolo, Rizal</title>
+  <meta name="description" content="Find Sumu Hillside Cafe in Antipolo, Rizal. Get directions, view hours, contact us, and reserve your table directly via Messenger. 3D Sumulong Hwy, Mambugan." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=Cinzel:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream:    '#F5EFE4',
+            sand:     '#E8D9C0',
+            espresso: '#2C1A0E',
+            bark:     '#5C3D2E',
+            moss:     '#3B5249',
+            sage:     '#7A9E7E',
+            gold:     '#C8963E',
+            char:     '#1E1E1E',
+          },
+          fontFamily: {
+            display: ['Cormorant Garamond', 'serif'],
+            heading: ['Cinzel', 'serif'],
+            body:    ['DM Sans', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { overflow-x: hidden; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: #F5EFE4;
+      color: #2C1A0E;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    #main-nav {
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+    #main-nav.scrolled {
+      background: rgba(44,26,14,0.97) !important;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.35);
+    }
+    .nav-link {
+      position: relative;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #F5EFE4;
+      transition: color 0.3s;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: #C8963E;
+      transition: width 0.35s ease;
+    }
+    .nav-link:hover { color: #C8963E; }
+    .nav-link:hover::after { width: 100%; }
+    .nav-link.active { color: #C8963E; }
+    .nav-link.active::after { width: 100%; }
+
+    /* ── HERO ── */
+    #contact-hero {
+      background-image:
+        linear-gradient(to bottom, rgba(28,16,6,0.82) 0%, rgba(28,16,6,0.65) 60%, rgba(245,239,228,0.06) 100%),
+        url('https://images.unsplash.com/photo-1439130490301-25e322d88054?w=1800&q=80');
+      background-size: cover;
+      background-position: center 35%;
+      background-attachment: fixed;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #C8963E;
+      color: #F5EFE4;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.85rem 2.1rem;
+      border-radius: 4px;
+      transition: background 0.3s, transform 0.25s, box-shadow 0.3s;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary:hover {
+      background: #a97a2c;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(200,150,62,0.38);
+    }
+    .btn-primary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .btn-maps {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #3B5249;
+      color: #F5EFE4;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.85rem 2.1rem;
+      border-radius: 4px;
+      transition: background 0.3s, transform 0.25s, box-shadow 0.3s;
+      text-decoration: none;
+    }
+    .btn-maps:hover {
+      background: #2d3f38;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(59,82,73,0.38);
+    }
+
+    /* ── ANIMATE ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up-d1 { transition-delay: 0.12s; }
+    .fade-up-d2 { transition-delay: 0.24s; }
+    .fade-up-d3 { transition-delay: 0.36s; }
+
+    /* ── MAP CARD ── */
+    #map-card {
+      background: #2C1A0E;
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      border: 1px solid rgba(200,150,62,0.2);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    #map-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.3);
+    }
+    #map-card:hover #map-overlay {
+      opacity: 1;
+    }
+    #map-bg {
+      width: 100%;
+      height: 280px;
+      background-image:
+        url('https://images.unsplash.com/photo-1601918774946-25832a4be0d6?w=800&q=80');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.55) saturate(0.7);
+      transition: filter 0.35s;
+    }
+    #map-card:hover #map-bg {
+      filter: brightness(0.45) saturate(0.6);
+    }
+    #map-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.92;
+      transition: opacity 0.35s;
+    }
+
+    /* ── FORM ── */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .form-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #5C3D2E;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      background: #fff;
+      border: 1.5px solid rgba(92,61,46,0.18);
+      border-radius: 10px;
+      padding: 0.8rem 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      color: #2C1A0E;
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      -webkit-appearance: none;
+    }
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: #b0a090;
+    }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: #C8963E;
+      box-shadow: 0 0 0 3px rgba(200,150,62,0.12);
+    }
+    .form-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 24 24' stroke='%235C3D2E' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 2.5rem;
+      cursor: pointer;
+    }
+    .form-textarea { resize: vertical; min-height: 100px; }
+
+    /* ── GOLD DIVIDER ── */
+    .gold-divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(to right, transparent, #C8963E, transparent);
+    }
+
+    /* ── CONTACT CARDS ── */
+    .contact-card {
+      background: #fff;
+      border: 1px solid rgba(92,61,46,0.1);
+      border-radius: 16px;
+      padding: 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .contact-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(44,26,14,0.1);
+    }
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(200,150,62,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #C8963E;
+    }
+
+    /* ── MOBILE NAV ── */
+    #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    #mobile-menu.open { max-height: 400px; }
+
+    /* ── HAMBURGER ── */
+    .ham span { display: block; width: 22px; height: 2px; background: #F5EFE4; border-radius: 2px; transition: all 0.3s; }
+    .ham.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .ham.active span:nth-child(2) { opacity: 0; }
+    .ham.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── SUCCESS STATE ── */
+    #form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+    }
+    #form-success.show { display: block; }
+
+    /* ── HOURS BAND ── */
+    #hours-band {
+      background-image:
+        linear-gradient(rgba(44,26,14,0.91), rgba(44,26,14,0.91)),
+        url('https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=1800&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     STICKY NAVIGATION
+══════════════════════════════════════ -->
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-espresso/90 backdrop-blur-md shadow-lg">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="flex items-center justify-between h-20">
+      <a href="index.html" class="flex flex-col leading-none">
+        <span class="font-heading text-cream text-lg tracking-widest">SUMU</span>
+        <span class="font-body text-gold text-[0.58rem] tracking-[0.28em] uppercase -mt-0.5">Hillside Cafe</span>
+      </a>
+      <div class="hidden md:flex items-center gap-10">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="menu.html" class="nav-link">Menu</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+        <a href="#reservation" class="btn-primary text-[0.72rem] py-2.5 px-5">Book a Table</a>
+      </div>
+      <button id="ham-btn" class="ham md:hidden flex flex-col gap-[5px] p-2 focus:outline-none" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="md:hidden bg-espresso/97 backdrop-blur-md">
+    <div class="px-6 pt-2 pb-6 flex flex-col gap-5">
+      <a href="index.html" class="nav-link text-cream py-1">Home</a>
+      <a href="menu.html" class="nav-link text-cream py-1">Menu</a>
+      <a href="contact.html" class="nav-link text-cream py-1">Contact</a>
+      <a href="#reservation" class="btn-primary w-fit mt-2">Book a Table</a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section id="contact-hero" class="pt-48 pb-32 text-center px-6">
+  <div class="max-w-3xl mx-auto">
+    <span class="inline-block border border-gold/50 text-gold font-body text-[0.68rem] tracking-[0.22em] uppercase px-4 py-1.5 rounded-full mb-7 fade-up">
+      Antipolo, Rizal
+    </span>
+    <h1 class="font-display text-cream text-5xl sm:text-6xl lg:text-7xl font-light leading-tight mb-6 fade-up fade-up-d1">
+      Come Find Us on <br/><em class="italic">the Hillside</em>
+    </h1>
+    <p class="font-body text-sand/70 text-base max-w-md mx-auto fade-up fade-up-d2 leading-relaxed">
+      Reserve your table, get directions, and connect with us — we'd love to host you up here.
+    </p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     CONTACT INFO + MAP
+══════════════════════════════════════ -->
+<section id="contact-info" class="bg-cream pb-20">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+    <!-- Top: Info Cards + Map -->
+    <div class="grid lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-14 items-start">
+
+      <!-- Left: Info Cards -->
+      <div class="space-y-4 fade-up">
+        <h2 class="font-display text-espresso text-4xl font-light mb-2">Get in Touch</h2>
+        <div class="gold-divider mb-6"></div>
+
+        <!-- Address -->
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <div>
+            <div class="font-body text-bark font-semibold text-sm tracking-wide mb-1">Address</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Sumu+Cafe+Antipolo" target="_blank" rel="noopener"
+              class="font-body text-espresso text-sm leading-relaxed hover:text-gold transition-colors underline underline-offset-2">
+              3D Sumulong Hwy, Mambugan, Antipolo, 1870 Rizal
+            </a>
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          </div>
+          <div>
+            <div class="font-body text-bark font-semibold text-sm tracking-wide mb-1">Phone</div>
+            <a href="tel:09060293304" class="font-body text-espresso text-sm hover:text-gold transition-colors">0906 029 3304</a>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <div>
+            <div class="font-body text-bark font-semibold text-sm tracking-wide mb-1">Email</div>
+            <a href="mailto:sumucafeph@gmail.com" class="font-body text-espresso text-sm hover:text-gold transition-colors">sumucafeph@gmail.com</a>
+          </div>
+        </div>
+
+        <!-- Socials -->
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <div>
+            <div class="font-body text-bark font-semibold text-sm tracking-wide mb-1">Social Media</div>
+            <div class="flex items-center gap-4 mt-1">
+              <a href="https://instagram.com/sumucafe" target="_blank" rel="noopener"
+                class="flex items-center gap-1.5 text-espresso hover:text-gold transition-colors text-sm font-body">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zm4.25 3a5.5 5.5 0 110 11 5.5 5.5 0 010-11zm0 1.5a4 4 0 100 8 4 4 0 000-8zm5.63-2.38a1 1 0 110 2 1 1 0 010-2z"/></svg>
+                @sumucafe
+              </a>
+              <a href="https://facebook.com/sumucafeph" target="_blank" rel="noopener"
+                class="flex items-center gap-1.5 text-espresso hover:text-gold transition-colors text-sm font-body">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                sumucafeph
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Amenities -->
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+          </div>
+          <div>
+            <div class="font-body text-bark font-semibold text-sm tracking-wide mb-2">Amenities</div>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-cream border border-sand/60 text-bark/70 text-xs font-body px-2.5 py-1 rounded-full">♿ Wheelchair Access</span>
+              <span class="bg-cream border border-sand/60 text-bark/70 text-xs font-body px-2.5 py-1 rounded-full">👶 Kid-Friendly</span>
+              <span class="bg-cream border border-sand/60 text-bark/70 text-xs font-body px-2.5 py-1 rounded-full">🅿️ Free Parking</span>
+              <span class="bg-cream border border-sand/60 text-bark/70 text-xs font-body px-2.5 py-1 rounded-full">📷 Photo Service</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Map Card -->
+      <div class="fade-up fade-up-d1">
+        <div id="map-card" onclick="openMaps()" role="button" tabindex="0" aria-label="Open Sumu Cafe location on Google Maps"
+          onkeydown="if(event.key==='Enter')openMaps()">
+          <div id="map-bg"></div>
+          <div id="map-overlay" class="p-8">
+            <!-- Pin Icon -->
+            <div class="w-16 h-16 rounded-full bg-gold/20 backdrop-blur-sm border-2 border-gold/60 flex items-center justify-center mb-4">
+              <svg class="w-8 h-8 text-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </div>
+            <h3 class="font-display text-cream text-2xl font-light mb-1">Sumu Hillside Cafe</h3>
+            <p class="font-body text-sand/80 text-sm mb-5 text-center leading-relaxed">
+              3D Sumulong Hwy, Mambugan<br/>Antipolo, 1870 Rizal
+            </p>
+            <div class="flex flex-col items-center gap-3 w-full max-w-xs">
+              <span class="w-full text-center bg-gold text-cream font-body text-xs font-semibold tracking-widest uppercase py-3 px-6 rounded-md transition-all hover:bg-gold/80">
+                📍 Open in Google Maps
+              </span>
+              <span class="text-sand/50 text-xs font-body">Click anywhere on this card</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Directions button below map -->
+        <div class="mt-4">
+          <a href="https://www.google.com/maps/search/?api=1&query=Sumu+Cafe+Antipolo" target="_blank" rel="noopener"
+            class="btn-maps w-full justify-center">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+            Get Directions
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     HOURS BAND
+══════════════════════════════════════ -->
+<section id="hours-band" class="py-20">
+  <div class="max-w-5xl mx-auto px-6 lg:px-12">
+    <div class="text-center mb-12 fade-up">
+      <span class="text-sage font-body text-xs tracking-[0.22em] uppercase">Opening Hours</span>
+      <h2 class="font-display text-cream text-4xl font-light mt-3">When to Visit Us</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
+      <div class="bg-cream/10 border border-cream/15 backdrop-blur-sm rounded-2xl p-7 text-center fade-up">
+        <div class="font-heading text-gold text-xs tracking-widest uppercase mb-3">Monday – Thursday</div>
+        <div class="font-display text-cream text-3xl font-light">9:00 AM</div>
+        <div class="text-sand/40 font-body text-sm my-1">—</div>
+        <div class="font-display text-cream text-3xl font-light">10:00 PM</div>
+      </div>
+      <div class="bg-gold/15 border border-gold/30 backdrop-blur-sm rounded-2xl p-7 text-center fade-up fade-up-d1">
+        <div class="font-heading text-gold text-xs tracking-widest uppercase mb-3">Friday – Sunday</div>
+        <div class="font-display text-cream text-3xl font-light">7:00 AM</div>
+        <div class="text-sand/40 font-body text-sm my-1">—</div>
+        <div class="font-display text-cream text-3xl font-light">11:00 PM</div>
+        <div class="mt-2 text-gold/60 font-body text-xs">Extended weekend hours</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     RESERVATION FORM
+══════════════════════════════════════ -->
+<section id="reservation" class="py-24 bg-cream">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+    <div class="grid lg:grid-cols-[1fr_1.4fr] gap-14 lg:gap-20 items-start">
+
+      <!-- Left: Info Panel -->
+      <div class="fade-up">
+        <span class="text-bark font-body text-xs tracking-[0.22em] uppercase">Table Reservations</span>
+        <h2 class="font-display text-espresso text-4xl sm:text-5xl font-light leading-tight mt-4 mb-6">
+          Reserve Your <br/><em class="italic">Hillside Seat</em>
+        </h2>
+        <div class="gold-divider mb-8"></div>
+        <p class="font-body text-bark/70 leading-relaxed mb-8 text-base">
+          Fill out the form and your reservation inquiry will be sent directly to our team via Facebook Messenger — we'll confirm your booking as soon as possible.
+        </p>
+
+        <!-- How it works -->
+        <div class="space-y-5">
+          <div class="flex items-start gap-4">
+            <div class="w-8 h-8 rounded-full bg-espresso text-cream flex items-center justify-center text-xs font-body font-bold flex-shrink-0 mt-0.5">1</div>
+            <div>
+              <div class="font-body text-espresso font-semibold text-sm mb-0.5">Fill out the form</div>
+              <div class="text-bark/60 text-sm font-body leading-relaxed">Provide your details, preferred date, time, and seating.</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-8 h-8 rounded-full bg-espresso text-cream flex items-center justify-center text-xs font-body font-bold flex-shrink-0 mt-0.5">2</div>
+            <div>
+              <div class="font-body text-espresso font-semibold text-sm mb-0.5">Sent to Messenger</div>
+              <div class="text-bark/60 text-sm font-body leading-relaxed">Your request opens as a pre-filled message in Facebook Messenger.</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-8 h-8 rounded-full bg-gold text-cream flex items-center justify-center text-xs font-body font-bold flex-shrink-0 mt-0.5">3</div>
+            <div>
+              <div class="font-body text-espresso font-semibold text-sm mb-0.5">Confirmed by the team</div>
+              <div class="text-bark/60 text-sm font-body leading-relaxed">We'll confirm your reservation and see you on the hill!</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick contact -->
+        <div class="mt-10 p-5 bg-espresso/5 border border-espresso/10 rounded-2xl">
+          <div class="text-bark font-body text-xs tracking-widest uppercase mb-3">Prefer to call?</div>
+          <a href="tel:09060293304" class="font-display text-espresso text-2xl hover:text-gold transition-colors">0906 029 3304</a>
+          <div class="text-bark/50 text-xs font-body mt-1">Or message us on <a href="https://facebook.com/sumucafeph" target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-gold transition-colors">Facebook</a></div>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="fade-up fade-up-d1">
+        <div class="bg-white border border-sand/40 rounded-3xl p-8 lg:p-10 shadow-sm">
+
+          <!-- Form Header -->
+          <div class="flex items-center gap-3 mb-8 pb-6 border-b border-sand/30">
+            <div class="w-10 h-10 rounded-xl bg-gold/15 flex items-center justify-center">
+              <svg class="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            </div>
+            <div>
+              <div class="font-body text-espresso font-semibold text-base">Table Reservation</div>
+              <div class="text-bark/50 text-xs font-body">Sends via Facebook Messenger</div>
+            </div>
+            <!-- Messenger icon -->
+            <div class="ml-auto">
+              <svg class="w-7 h-7" viewBox="0 0 24 24" fill="#0099FF"><path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.918 1.32 5.53 3.4 7.28V22l3.254-1.816A11.043 11.043 0 0012 20.485c5.523 0 10-4.144 10-9.242S17.523 2 12 2zm1.112 12.422l-2.548-2.715-4.972 2.715 5.468-5.81 2.61 2.716 4.911-2.716-5.47 5.81z"/></svg>
+            </div>
+          </div>
+
+          <!-- The actual form -->
+          <form id="reservation-form" novalidate>
+            <div class="space-y-5">
+
+              <!-- Full Name -->
+              <div class="form-group">
+                <label for="guest-name" class="form-label">Full Name <span class="text-gold">*</span></label>
+                <input type="text" id="guest-name" name="name" class="form-input"
+                  placeholder="e.g. Juan dela Cruz" required autocomplete="name" />
+                <div class="text-red-500 text-xs font-body hidden error-msg" id="err-name">Please enter your full name.</div>
+              </div>
+
+              <!-- Date + Time row -->
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div class="form-group">
+                  <label for="res-date" class="form-label">Date <span class="text-gold">*</span></label>
+                  <input type="date" id="res-date" name="date" class="form-input" required />
+                  <div class="text-red-500 text-xs font-body hidden error-msg" id="err-date">Please select a date.</div>
+                </div>
+                <div class="form-group">
+                  <label for="res-time" class="form-label">Time <span class="text-gold">*</span></label>
+                  <input type="time" id="res-time" name="time" class="form-input" required />
+                  <div class="text-red-500 text-xs font-body hidden error-msg" id="err-time">Please select a time.</div>
+                </div>
+              </div>
+
+              <!-- Guests + Seating row -->
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div class="form-group">
+                  <label for="guests" class="form-label">Number of Guests <span class="text-gold">*</span></label>
+                  <select id="guests" name="guests" class="form-select" required>
+                    <option value="" disabled selected>Select guests</option>
+                    <option value="1">1 Guest</option>
+                    <option value="2">2 Guests</option>
+                    <option value="3">3 Guests</option>
+                    <option value="4">4 Guests</option>
+                    <option value="5">5 Guests</option>
+                    <option value="6">6 Guests</option>
+                    <option value="7–10">7–10 Guests</option>
+                    <option value="10+">10+ Guests (Group)</option>
+                  </select>
+                  <div class="text-red-500 text-xs font-body hidden error-msg" id="err-guests">Please select number of guests.</div>
+                </div>
+                <div class="form-group">
+                  <label for="seating" class="form-label">Seating Preference <span class="text-gold">*</span></label>
+                  <select id="seating" name="seating" class="form-select" required>
+                    <option value="" disabled selected>Choose seating</option>
+                    <option value="Indoor Booth">Indoor Booth</option>
+                    <option value="Outdoor Patio / Terrace">Outdoor Patio / Terrace</option>
+                    <option value="No Preference">No Preference</option>
+                  </select>
+                  <div class="text-red-500 text-xs font-body hidden error-msg" id="err-seating">Please choose a seating preference.</div>
+                </div>
+              </div>
+
+              <!-- Special Requests -->
+              <div class="form-group">
+                <label for="notes" class="form-label">Special Requests / Notes</label>
+                <textarea id="notes" name="notes" class="form-textarea"
+                  placeholder="Any dietary restrictions, birthday surprise, wheelchair access needs, etc."></textarea>
+              </div>
+
+              <!-- Submit -->
+              <button type="submit" id="submit-btn" class="btn-primary w-full justify-center py-4 text-sm">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.918 1.32 5.53 3.4 7.28V22l3.254-1.816A11.043 11.043 0 0012 20.485c5.523 0 10-4.144 10-9.242S17.523 2 12 2zm1.112 12.422l-2.548-2.715-4.972 2.715 5.468-5.81 2.61 2.716 4.911-2.716-5.47 5.81z"/></svg>
+                Send Reservation via Messenger
+              </button>
+
+              <p class="text-bark/40 text-xs font-body text-center leading-relaxed">
+                Clicking submit will open Facebook Messenger with your reservation details pre-filled. We'll confirm your booking shortly.
+              </p>
+            </div>
+          </form>
+
+          <!-- Success State -->
+          <div id="form-success">
+            <div class="text-5xl mb-4">🎉</div>
+            <h3 class="font-display text-espresso text-3xl font-light mb-3">Redirecting to Messenger</h3>
+            <p class="font-body text-bark/70 text-sm leading-relaxed mb-6">
+              Your reservation details are ready in Messenger. Just hit send — we'll confirm your table soon!
+            </p>
+            <button onclick="resetForm()" class="btn-primary">Make Another Reservation</button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer class="bg-espresso py-10">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <div class="font-heading text-cream tracking-widest text-base">SUMU</div>
+        <div class="text-gold text-[0.6rem] tracking-[0.3em] uppercase">Hillside Cafe</div>
+      </div>
+      <div class="flex gap-8 text-xs tracking-widest uppercase">
+        <a href="index.html" class="text-sand/60 hover:text-gold transition-colors">Home</a>
+        <a href="menu.html" class="text-sand/60 hover:text-gold transition-colors">Menu</a>
+        <a href="contact.html" class="text-sand/60 hover:text-gold transition-colors">Contact</a>
+      </div>
+      <div class="flex items-center gap-5">
+        <a href="https://instagram.com/sumucafe" target="_blank" rel="noopener" aria-label="Sumu Cafe on Instagram"
+          class="w-9 h-9 rounded-full border border-sand/20 flex items-center justify-center text-sand/60 hover:text-gold hover:border-gold transition-all duration-300">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zm4.25 3a5.5 5.5 0 110 11 5.5 5.5 0 010-11zm0 1.5a4 4 0 100 8 4 4 0 000-8zm5.63-2.38a1 1 0 110 2 1 1 0 010-2z"/></svg>
+        </a>
+        <a href="https://facebook.com/sumucafeph" target="_blank" rel="noopener" aria-label="Sumu Cafe on Facebook"
+          class="w-9 h-9 rounded-full border border-sand/20 flex items-center justify-center text-sand/60 hover:text-gold hover:border-gold transition-all duration-300">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="border-t border-sand/10 mt-8 pt-6 text-center text-sand/30 text-xs font-body">
+      © 2024 Sumu Hillside Cafe · 3D Sumulong Hwy, Mambugan, Antipolo, 1870 Rizal · All rights reserved
+    </div>
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════ -->
+<script defer>
+  // ── Sticky Nav scroll
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // ── Hamburger
+  const hamBtn     = document.getElementById('ham-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamBtn.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamBtn.classList.toggle('active', isOpen);
+    hamBtn.setAttribute('aria-expanded', isOpen);
+  });
+
+  // ── Map Card click
+  function openMaps() {
+    window.open(
+      'https://www.google.com/maps/search/?api=1&query=Sumu+Cafe+Antipolo',
+      '_blank',
+      'noopener,noreferrer'
+    );
+  }
+
+  // ── Format time 24h → 12h
+  function formatTime(t) {
+    if (!t) return '';
+    const [h, m] = t.split(':').map(Number);
+    const suffix = h >= 12 ? 'PM' : 'AM';
+    const hour   = h % 12 || 12;
+    return `${hour}:${String(m).padStart(2,'0')} ${suffix}`;
+  }
+
+  // ── Format date
+  function formatDate(d) {
+    if (!d) return '';
+    const date = new Date(d + 'T00:00:00');
+    return date.toLocaleDateString('en-PH', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  }
+
+  // ── Form Reset
+  function resetForm() {
+    document.getElementById('reservation-form').reset();
+    document.getElementById('form-success').classList.remove('show');
+    document.getElementById('reservation-form').style.display = '';
+  }
+
+  // ── Validate field
+  function validateField(id, errId, condition) {
+    const errEl = document.getElementById(errId);
+    if (condition) {
+      errEl.classList.add('hidden');
+      return true;
+    } else {
+      errEl.classList.remove('hidden');
+      return false;
+    }
+  }
+
+  // ── Reservation Form Submit
+  document.getElementById('reservation-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name    = document.getElementById('guest-name').value.trim();
+    const date    = document.getElementById('res-date').value;
+    const time    = document.getElementById('res-time').value;
+    const guests  = document.getElementById('guests').value;
+    const seating = document.getElementById('seating').value;
+    const notes   = document.getElementById('notes').value.trim();
+
+    // Validate
+    const v1 = validateField('guest-name', 'err-name',    name.length > 0);
+    const v2 = validateField('res-date',   'err-date',    date.length > 0);
+    const v3 = validateField('res-time',   'err-time',    time.length > 0);
+    const v4 = validateField('guests',     'err-guests',  guests.length > 0);
+    const v5 = validateField('seating',    'err-seating', seating.length > 0);
+
+    if (!v1 || !v2 || !v3 || !v4 || !v5) return;
+
+    // Build message
+    const specialNote = notes || 'None';
+    const message =
+`Hi Sumu Cafe! I would like to inquire about a table reservation:
+
+- Name: ${name}
+- Date: ${formatDate(date)}
+- Time: ${formatTime(time)}
+- Guests: ${guests}
+- Seating: ${seating}
+- Special Requests: ${specialNote}
+
+Thank you! 😊`;
+
+    const encoded = encodeURIComponent(message);
+    const messengerURL = `https://m.me/sumucafeph?text=${encoded}`;
+
+    // Show success state
+    document.getElementById('reservation-form').style.display = 'none';
+    document.getElementById('form-success').classList.add('show');
+
+    // Open Messenger after short delay
+    setTimeout(() => {
+      window.open(messengerURL, '_blank', 'noopener,noreferrer');
+    }, 600);
+  });
+
+  // ── Scroll Reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // ── Immediate hero animate
+  document.querySelectorAll('#contact-hero .fade-up').forEach(el => {
+    setTimeout(() => el.classList.add('visible'), 150);
+  });
+
+  // ── Set min date on date picker (today)
+  const dateInput = document.getElementById('res-date');
+  const today = new Date();
+  const yyyy  = today.getFullYear();
+  const mm    = String(today.getMonth() + 1).padStart(2, '0');
+  const dd    = String(today.getDate()).padStart(2, '0');
+  dateInput.min = `${yyyy}-${mm}-${dd}`;
+
+  // ── Scroll to reservation if hash present
+  if (window.location.hash === '#reservation') {
+    setTimeout(() => {
+      document.getElementById('reservation').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 400);
+  }
+</script>
+</body>
+</html>
